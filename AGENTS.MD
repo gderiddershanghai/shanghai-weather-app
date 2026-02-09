@@ -8,6 +8,14 @@ The project favors clarity, simple methods, and shareable visuals over complex m
 
 ---
 
+## Working environment (WSL)
+
+- This repo is developed and run **inside WSL**.
+- Assume file paths, tooling, and commands are executed in Linux.
+- Do not optimize for Windows path assumptions (e.g. `\\wsl.localhost\...`).
+
+---
+
 ## Application modes
 
 ### 1) Story mode (scrollytelling)
@@ -27,13 +35,14 @@ Both modes must reuse the same data, chart primitives, and scales.
 
 ---
 
-## Data assumptions
+## Data policy
 
 - Input data is already cleaned and trusted
-- Weather and AQI data live in static files (CSV or JSON)
-- Precomputed or derived datasets are allowed if they simplify rendering
+- **Source-of-truth stays in CSV** (easy to inspect and replace)
+- **Derived JSON is allowed** for chart-ready payloads (smaller/faster), e.g. monthly rollups
+- Weather and AQI data live in static files under `public/data/`
 
-Agents may **reorganize the repo freely**, including moving cleaned data files, as long as structure remains clear and minimal.
+Agents may reorganize the repo freely (including moving the top-level cleaned CSV) as long as structure remains clear and minimal.
 
 ---
 
@@ -41,8 +50,9 @@ Agents may **reorganize the repo freely**, including moving cleaned data files, 
 
 Agents may:
 
-- Move cleaned data into a dedicated `public/data/` directory
-- Split logic cleanly between data, charts, modes, and layout
+- Move cleaned data into `public/data/`
+- Add `public/data/derived/` for pre-aggregated outputs
+- Split logic between data loading, transforms, and chart primitives
 - Rename files for clarity and consistency
 - Add small helper modules when reuse is clear
 
@@ -58,47 +68,28 @@ Agents may:
 ---
 
 ## Expected folder structure (target)
+
+```text
 public/
-data/
-weather_shanghai.csv
-aqi_shanghai.csv
-derived/
+  data/
+    weather_shanghai.csv
+    aqi_shanghai.csv
+    derived/
 
 src/
-app/
-index.js
-routes.js
-state/
+  app/
+    index.js
+    routes.js
+    state/
 
-modes/
-story/
-explore/
+  modes/
+    story/
+    explore/
 
-viz/
-charts/
-data/
-encodings/
+  viz/
+    charts/
+    data/
+    encodings/
 
-components/
-styles/
-
-This structure is a guideline, not a constraint. Simpler is acceptable if clarity is preserved.
-
----
-
-## Code expectations
-
-- Prefer small, readable modules over abstraction
-- Charts should be reusable and parameter-driven
-- Transformations should be explicit and easy to explain
-- Default to D3 primitives; avoid magic helpers
-
----
-
-## Output expectations
-
-- Every change should improve clarity or reduce duplication
-- Visuals should support short, concrete claims
-- The app should work as a static site with no build step
-
-This file defines **agent behavior** and should not be treated as user-facing documentation.
+  components/
+  styles/

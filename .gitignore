@@ -1,0 +1,21 @@
+# Node / SvelteKit
+node_modules/
+.svelte-kit/
+build/
+vite.config.ts.timestamp-*
+
+# Pipeline outputs are built in CI, not committed — except curated event images
+static/data/derived/*
+!static/data/derived/event-images/
+!static/data/derived/event-images/**
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store

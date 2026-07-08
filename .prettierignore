@@ -1,0 +1,10 @@
+.svelte-kit/
+build/
+node_modules/
+static/data/derived/
+Nbs/
+shanghai_weather/
+archive/
+data/
+pipeline/
+package-lock.json

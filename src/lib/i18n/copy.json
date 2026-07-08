@@ -1,0 +1,108 @@
+{
+	"site.title": { "en": "Shanghai Weather Stories", "zh": "上海天气故事" },
+	"site.tagline": {
+		"en": "45 years of heat, cold, rain and haze — what the data says",
+		"zh": "45年的酷暑、严寒、风雨与雾霾——数据告诉我们什么"
+	},
+	"nav.story": { "en": "Story", "zh": "故事" },
+	"nav.explore": { "en": "Explore", "zh": "探索" },
+	"nav.switchLang": { "en": "中文", "zh": "English" },
+	"footer.dataThrough": { "en": "Data through", "zh": "数据截至" },
+	"footer.source": {
+		"en": "Weather: Open-Meteo (ERA5) · Air quality: aqicn.org",
+		"zh": "天气数据：Open-Meteo (ERA5) · 空气质量：aqicn.org"
+	},
+	"story.scrollHint": { "en": "scroll", "zh": "向下滚动" },
+	"story.outroTitle": { "en": "Now it's your turn", "zh": "现在轮到你了" },
+	"story.outroBody": {
+		"en": "Everything you just saw — and everything we didn't show you — is open to explore. Filter by year, metric, or threshold and see what you find.",
+		"zh": "你刚才看到的一切——以及我们没有展示的一切——都可以自由探索。按年份、指标或阈值筛选，看看你能发现什么。"
+	},
+	"seasons.djf": { "en": "Winter", "zh": "冬" },
+	"seasons.mam": { "en": "Spring", "zh": "春" },
+	"seasons.jja": { "en": "Summer", "zh": "夏" },
+	"seasons.son": { "en": "Autumn", "zh": "秋" },
+	"seasons.all": { "en": "All seasons", "zh": "全部季节" },
+
+	"explore.title": { "en": "Explore the data", "zh": "探索数据" },
+	"explore.chartType": { "en": "View", "zh": "视图" },
+	"explore.chartType.climatology": { "en": "Year shape", "zh": "年度形态" },
+	"explore.chartType.timeseries": { "en": "Time series", "zh": "时间序列" },
+	"explore.chartType.heatmap": { "en": "Heatmap", "zh": "热力图" },
+	"explore.chartType.scatter": { "en": "Temp × Air", "zh": "温度×空气" },
+	"explore.tempMode": { "en": "Temperature", "zh": "温度" },
+	"explore.tempMode.real": { "en": "Measured", "zh": "实测" },
+	"explore.tempMode.feels_like": { "en": "Feels like", "zh": "体感" },
+	"explore.metric": { "en": "Metric", "zh": "指标" },
+	"explore.metric.tmax": { "en": "Daily high", "zh": "日最高温" },
+	"explore.metric.tmin": { "en": "Daily low", "zh": "日最低温" },
+	"explore.metric.prcp": { "en": "Rainfall", "zh": "降水量" },
+	"explore.metric.gmax": { "en": "Wind gusts", "zh": "阵风" },
+	"explore.metric.pm25": { "en": "PM2.5", "zh": "PM2.5" },
+	"explore.dots": { "en": "Extreme days", "zh": "极端日" },
+	"explore.dots.p99": { "en": "Top 1%", "zh": "最极端1%" },
+	"explore.dots.p95": { "en": "Top 5%", "zh": "最极端5%" },
+	"explore.dots.none": { "en": "Hidden", "zh": "隐藏" },
+	"explore.tail": { "en": "Show", "zh": "显示" },
+	"explore.tail.hot": { "en": "Hot", "zh": "热" },
+	"explore.tail.cold": { "en": "Cold", "zh": "冷" },
+	"explore.tail.both": { "en": "Both", "zh": "全部" },
+	"explore.smoothing": { "en": "Smoothing", "zh": "平滑" },
+	"explore.smoothing.1": { "en": "Raw", "zh": "原始" },
+	"explore.smoothing.30": { "en": "30-day", "zh": "30天" },
+	"explore.smoothing.365": { "en": "1-year", "zh": "1年" },
+	"explore.reset": { "en": "Reset", "zh": "重置" },
+	"explore.placeholder": {
+		"en": "Explore mode is under construction.",
+		"zh": "探索模式正在建设中。"
+	},
+
+	"steps.hook-1.title": { "en": "What a normal year feels like", "zh": "正常的一年是什么样" },
+	"steps.hook-1.body": {
+		"en": "Every day of the year has a 'normal' in Shanghai. The band shows the range that 9 out of 10 days have stayed inside since 1980; the line is the typical daily high. Muggy Augusts, damp Januaries — the city's rhythm.",
+		"zh": "在上海，一年中的每一天都有自己的“正常值”。色带显示自1980年以来九成日子所处的温度范围；曲线是典型的每日最高温。闷热的八月、湿冷的一月——这就是这座城市的节奏。"
+	},
+	"steps.hook-2.title": { "en": "…and the days that broke it", "zh": "……以及打破常规的日子" },
+	"steps.hook-2.body": {
+		"en": "But some days blow straight past normal. Each dot is a day among the most extreme 1% for its date — red above, blue below. The ringed dots carry stories: tap one and see what the newspapers said.",
+		"zh": "但有些日子会直接冲破“正常”。每个圆点都是同期最极端的1%的一天——红色偏热，蓝色偏冷。带圆圈的点背后有故事：点一下，看看当时报纸怎么说。"
+	},
+
+	"steps.heat-1.title": { "en": "Summers, first", "zh": "先说夏天" },
+	"steps.heat-1.body": {
+		"en": "Zoom into June through September. The hottest days on record cluster stubbornly toward recent years — this is not a smooth spread across four decades.",
+		"zh": "把视线聚焦到6月至9月。有记录以来最热的日子顽固地聚集在近几年——这绝不是四十多年间的均匀分布。"
+	},
+	"steps.heat-2.title": { "en": "August 2024", "zh": "2024年8月" },
+	"steps.heat-2.body": {
+		"en": "August 3rd, 2024: 38.6°C in the shade, at the peak of a heatwave that pushed the city to its highest alert level. Days like this used to be generational; now they arrive in batches.",
+		"zh": "2024年8月3日：阴凉处38.6°C，正值一场令全市拉响最高级别高温预警的热浪顶峰。这样的日子曾经几十年一遇，如今却成批出现。"
+	},
+	"steps.heat-3.title": { "en": "What it actually felt like", "zh": "体感有多热" },
+	"steps.heat-3.body": {
+		"en": "Switch to 'feels like' — heat plus Shanghai's humidity — and the picture worsens. July 17th, 1988 remains the record: a feels-like of 46.6°C. The recent years crowd right behind it.",
+		"zh": "切换到“体感温度”——高温叠加上海的湿度——情况更糟。1988年7月17日仍是纪录：体感46.6°C。而近几年正紧随其后。"
+	},
+
+	"steps.cold-1.title": { "en": "The other tail: cold", "zh": "另一端：严寒" },
+	"steps.cold-1.body": {
+		"en": "Now deep winter, January through March. Shanghai cold is its own animal — humid, unheated indoors south of the Huai River line, seeping into everything.",
+		"zh": "现在看隆冬，1月至3月。上海的冷有它自己的性格——潮湿、地处集中供暖线以南的室内寒意，无孔不入。"
+	},
+	"steps.cold-2.title": { "en": "The winter the pipes burst", "zh": "水管爆裂的那个冬天" },
+	"steps.cold-2.body": {
+		"en": "January 24th, 2016: −8.5°C, feels like −17.5°C. The city's pipes — never built for this — froze and burst across entire districts. Plumbers worked around the clock for a week. Everyone who lived here then remembers.",
+		"zh": "2016年1月24日：−8.5°C，体感−17.5°C。这座城市的水管从未为此设计——整片城区水管冻裂。水管工连续一周昼夜抢修。经历过的人都记得那个冬天。"
+	},
+	"steps.cold-3.title": { "en": "But the deep cold is fading", "zh": "但极寒正在退场" },
+	"steps.cold-3.body": {
+		"en": "The coldest day ever recorded here is January 31st, 1980 — feels like −17.7°C. Look at where the blue dots sit: mostly the 1980s and 90s. The 2016 freeze made headlines precisely because it had become rare.",
+		"zh": "有记录以来最冷的一天是1980年1月31日——体感−17.7°C。看看蓝点的分布：大多在八九十年代。2016年那场寒潮之所以上头条，恰恰因为它已经变得罕见。"
+	},
+
+	"steps.wrap-1.title": { "en": "Zoom back out", "zh": "拉远视角" },
+	"steps.wrap-1.body": {
+		"en": "One year, forty-five times over. The band is where Shanghai's weather is supposed to live; the dots are where it escaped. Rain, storms and the air itself are next — coming in the following chapters.",
+		"zh": "同样的一年，重复了四十五次。色带是上海天气“应该在”的位置；圆点是它逃逸的时刻。接下来的章节：风雨、台风，以及空气本身。"
+	}
+}

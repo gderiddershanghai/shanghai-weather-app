@@ -1,9 +1,17 @@
 <script lang="ts">
 	// Resolves chartState.chartType to the right chart component.
-	// (timeseries / heatmap / scatter arrive with chapters 4–6.)
 	import { chartState } from '$lib/stores/chartState';
 	import ClimatologyChart from '$lib/charts/ClimatologyChart.svelte';
-	import type { Climatology, CuratedEvent, Meta, OutliersTable } from '$lib/data/load';
+	import TimeSeriesChart from '$lib/charts/TimeSeriesChart.svelte';
+	import MonthlyHeatmap from '$lib/charts/MonthlyHeatmap.svelte';
+	import ScatterChart from '$lib/charts/ScatterChart.svelte';
+	import type {
+		Climatology,
+		CompactTable,
+		CuratedEvent,
+		Meta,
+		OutliersTable
+	} from '$lib/data/load';
 	import { getI18n } from '$lib/i18n';
 	import { formatDate } from '$lib/utils/format';
 
@@ -11,12 +19,18 @@
 		clim,
 		outliers,
 		curatedEvents,
-		meta
+		meta,
+		daily = null,
+		monthly = null,
+		tempAqi = null
 	}: {
 		clim: Climatology | null;
 		outliers: OutliersTable | null;
 		curatedEvents: CuratedEvent[];
 		meta: Meta | null;
+		daily?: CompactTable | null;
+		monthly?: CompactTable | null;
+		tempAqi?: (CompactTable & { binned: any[] }) | null;
 	} = $props();
 
 	const i18n = getI18n();
@@ -25,6 +39,12 @@
 <div class="sticky-chart">
 	{#if $chartState.chartType === 'climatology' && clim && outliers}
 		<ClimatologyChart {clim} {outliers} {curatedEvents} />
+	{:else if $chartState.chartType === 'timeseries' && daily}
+		<TimeSeriesChart {daily} />
+	{:else if $chartState.chartType === 'heatmap' && monthly}
+		<MonthlyHeatmap {monthly} />
+	{:else if $chartState.chartType === 'scatter' && tempAqi}
+		<ScatterChart {tempAqi} />
 	{/if}
 
 	{#if meta}

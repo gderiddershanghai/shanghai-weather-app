@@ -95,14 +95,80 @@ export const steps: StoryStep[] = [
 		focusEvent: 'cold-1980-01-31'
 	},
 
-	// --- Wrap (rain/aqi/interplay chapters land in phase 5) ---------------------
+	// --- Rain & storms -----------------------------------------------------------
+	{
+		id: 'rain-1',
+		chapter: 'rain',
+		chart: {
+			chartType: 'heatmap',
+			metric: 'prcp',
+			focusedEventId: null
+		},
+		dataNeeds: ['daily']
+	},
+	{
+		id: 'rain-2',
+		chapter: 'rain',
+		chart: {
+			chartType: 'timeseries',
+			metric: 'prcp',
+			rollingWindow: 365,
+			xDomain: [1980, 2026]
+		}
+	},
+	{
+		id: 'rain-3',
+		chapter: 'rain',
+		chart: {
+			metric: 'gmax',
+			rollingWindow: 1
+		}
+	},
+
+	// --- Air --------------------------------------------------------------------
+	{
+		id: 'aqi-1',
+		chapter: 'aqi',
+		chart: {
+			chartType: 'heatmap',
+			metric: 'pm25'
+		}
+	},
+	{
+		id: 'aqi-2',
+		chapter: 'aqi',
+		chart: {}
+	},
+
+	// --- Interplay ----------------------------------------------------------------
+	{
+		id: 'interplay-1',
+		chapter: 'interplay',
+		chart: {
+			chartType: 'scatter',
+			scatterY: 'pm25',
+			seasonFilter: null
+		}
+	},
+	{
+		id: 'interplay-2',
+		chapter: 'interplay',
+		chart: {
+			seasonFilter: 0
+		}
+	},
+
+	// --- Wrap ---------------------------------------------------------------------
 	{
 		id: 'wrap-1',
 		chapter: 'explore',
 		chart: {
+			chartType: 'climatology',
 			xDomain: FULL_YEAR,
 			tempMode: 'real',
 			dotTail: 'both',
+			dotThreshold: 'p99',
+			seasonFilter: null,
 			focusedEventId: null
 		}
 	}

@@ -13,13 +13,16 @@
 	import {
 		loadClimatology,
 		loadCuratedEvents,
+		loadDaily,
 		loadMeta,
 		loadOutliers,
 		type Climatology,
+		type CompactTable,
 		type CuratedEvent,
 		type Meta,
 		type OutliersTable
 	} from '$lib/data/load';
+	import { base } from '$app/paths';
 
 	const i18n = getI18n();
 
@@ -27,16 +30,29 @@
 	let outliers = $state<OutliersTable | null>(null);
 	let curatedEvents = $state<CuratedEvent[]>([]);
 	let meta = $state<Meta | null>(null);
+	let daily = $state<CompactTable | null>(null);
+	let monthly = $state<CompactTable | null>(null);
+	let tempAqi = $state<(CompactTable & { binned: any[] }) | null>(null);
 	let loadError = $state<string | null>(null);
 
 	onMount(async () => {
 		try {
+			// hero payloads first (~60 KB gz) — chart paints immediately
 			[clim, outliers, curatedEvents, meta] = await Promise.all([
 				loadClimatology(),
 				loadOutliers(),
 				loadCuratedEvents(),
 				loadMeta()
 			]);
+			// later-chapter payloads load behind the first paint
+			const [d, m, ta] = await Promise.all([
+				loadDaily(),
+				fetch(`${base}/data/derived/monthly.json`).then((r) => r.json()),
+				fetch(`${base}/data/derived/temp-aqi.json`).then((r) => r.json())
+			]);
+			daily = d;
+			monthly = m;
+			tempAqi = ta;
 		} catch (e) {
 			loadError = e instanceof Error ? e.message : String(e);
 		}
@@ -68,7 +84,7 @@
 {:else}
 	<Scrolly {stepIds}>
 		{#snippet graphic()}
-			<StickyChart {clim} {outliers} {curatedEvents} {meta} />
+			<StickyChart {clim} {outliers} {curatedEvents} {meta} {daily} {monthly} {tempAqi} />
 		{/snippet}
 		{#snippet step(id)}
 			<StoryStep copyKey="steps.{id}" active={$activeStepId === id} />

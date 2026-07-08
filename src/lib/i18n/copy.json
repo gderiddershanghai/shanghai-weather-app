@@ -100,6 +100,44 @@
 		"zh": "有记录以来最冷的一天是1980年1月31日——体感−17.7°C。看看蓝点的分布：大多在八九十年代。2016年那场寒潮之所以上头条，恰恰因为它已经变得罕见。"
 	},
 
+	"steps.rain-1.title": { "en": "The plum rains", "zh": "梅雨" },
+	"steps.rain-1.body": {
+		"en": "Now the water. Each row is a year, each cell a month's total rain. See the dark stripe down June? That's the meiyu — the plum rains — arriving on schedule for 45 straight years.",
+		"zh": "现在看降水。每一行是一年，每一格是一个月的总雨量。看到六月那条深色条纹了吗？那就是梅雨——45年来年年如约而至。"
+	},
+	"steps.rain-2.title": { "en": "More rain? Wilder rain?", "zh": "雨更多了？还是更猛了？" },
+	"steps.rain-2.body": {
+		"en": "The smoothed line says yearly totals swing hard — the 12 days in June 1999 that dumped 510mm sit next to bone-dry stretches. The heaviest single day in the record: June 30, 1983, with 169.5mm. Three of the ten biggest multi-day soaks happened since 2021.",
+		"zh": "平滑曲线显示年度雨量波动剧烈——1999年6月那12天倾泻了510毫米，紧挨着的却是滴水不下的旱段。纪录中最猛的一天：1983年6月30日，169.5毫米。十大连续暴雨中有三次发生在2021年之后。"
+	},
+	"steps.rain-3.title": { "en": "When the wind arrives", "zh": "台风来的时候" },
+	"steps.rain-3.body": {
+		"en": "Every summer spike in this gust record has a name. The tallest — 109 km/h on July 25, 2021 — is Typhoon In-Fa, which made landfall near Shanghai twice in one weekend. In 2024, Bebinca became the strongest typhoon to hit the city directly since 1949.",
+		"zh": "这张阵风记录里每一根夏季尖峰都有名字。最高的那根——2021年7月25日，109公里/小时——是台风“烟花”，一个周末内两次在上海附近登陆。2024年，“贝碧嘉”成为1949年以来正面袭击上海的最强台风。"
+	},
+
+	"steps.aqi-1.title": { "en": "The air, remembered", "zh": "记忆中的空气" },
+	"steps.aqi-1.body": {
+		"en": "If you lived here in the mid-2010s you remember checking PM2.5 before opening a window. The heatmap doesn't forget either: dark winters in 2014 and 2015, when the median day's PM2.5 read 116 — 'unhealthy' on the US scale. (China's own AQI scale is more lenient at the same concentrations — same air, different color on the app.)",
+		"zh": "如果你在2010年代中期住在这里，你一定记得开窗前先看PM2.5。这张热力图也没有忘记：2014、2015年那些深色的冬天，PM2.5中位数高达116——按美标属于“不健康”。（同样的浓度，中国自己的AQI标准宽松一些——同样的空气，App上的颜色却不同。）"
+	},
+	"steps.aqi-2.title": { "en": "…is actually getting cleaner", "zh": "……其实正在变干净" },
+	"steps.aqi-2.body": {
+		"en": "Watch the rows lighten. The median PM2.5 day fell from 116 in 2014 to 77 in 2025; days over 100 dropped from 227 a year to 87. Still far from pristine — but this is one claim the data settles clearly: Shanghai's air is better than it was a decade ago.",
+		"zh": "看着一行行颜色变浅。PM2.5中位数从2014年的116降到2025年的77；超过100的天数从每年227天降到87天。离真正干净还很远——但这一点数据说得很清楚：上海的空气比十年前好了。"
+	},
+
+	"steps.interplay-1.title": { "en": "Heat and haze, together", "zh": "高温与雾霾的纠缠" },
+	"steps.interplay-1.body": {
+		"en": "One dot per day since 2014: temperature across, PM2.5 up, colored by season. The lines trace each season's typical air at each temperature. The pattern isn't one cloud — it's four different seasons behaving four different ways.",
+		"zh": "2014年以来的每一天都是一个点：横轴是气温，纵轴是PM2.5，颜色代表季节。曲线描出每个季节在不同气温下的典型空气。这不是一团乱点——是四个季节四种脾气。"
+	},
+	"steps.interplay-2.title": { "en": "Winter is the smog season", "zh": "冬天才是雾霾季" },
+	"steps.interplay-2.body": {
+		"en": "Isolate winter and the story sharpens: the coldest days carry the dirtiest air, as northern heating smoke and still air settle over the delta. Shanghai's worst-air days and its coldest days travel together — a pairing summer never matches.",
+		"zh": "只看冬天，故事就清晰了：最冷的日子往往空气最脏——北方取暖的烟尘加上静稳天气沉积在长三角上空。上海空气最差的日子和最冷的日子结伴而行——夏天从来没有这种组合。"
+	},
+
 	"steps.wrap-1.title": { "en": "Zoom back out", "zh": "拉远视角" },
 	"steps.wrap-1.body": {
 		"en": "One year, forty-five times over. The band is where Shanghai's weather is supposed to live; the dots are where it escaped. Rain, storms and the air itself are next — coming in the following chapters.",

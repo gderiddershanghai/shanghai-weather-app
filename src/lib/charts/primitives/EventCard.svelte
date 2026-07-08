@@ -27,7 +27,7 @@
 	const spansDays = $derived(event.days > 1);
 </script>
 
-<aside class="event-card" role="dialog" aria-label={note ?? event.id}>
+<div class="event-card" role="dialog" aria-label={note ?? event.id}>
 	<button class="close" onclick={() => onclose?.()} aria-label="close">×</button>
 
 	{#if imgSrc}
@@ -77,7 +77,7 @@
 			</ul>
 		{/if}
 	</div>
-</aside>
+</div>
 
 <style>
 	.event-card {

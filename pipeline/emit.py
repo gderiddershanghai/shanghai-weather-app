@@ -19,7 +19,8 @@ def _clean(value: Any) -> Any:
     if isinstance(value, (np.floating, float)):
         if math.isnan(value) or math.isinf(value):
             return None
-        return round(float(value), 1)
+        # 2 decimals: enough for temps/mm AND for config quantiles like 0.99
+        return round(float(value), 2)
     if isinstance(value, (np.integer, int)):
         return int(value)
     if isinstance(value, (np.bool_, bool)):

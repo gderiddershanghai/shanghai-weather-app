@@ -67,6 +67,11 @@ def add_time_fields(df: pd.DataFrame, cfg: TempConfig) -> pd.DataFrame:
         is_leap_day = (d["month"] == 2) & (d["day"] == 29)
         # Feb 28 DOY is 59 for non-leap years
         d.loc[is_leap_day, "doy"] = 59
+        # Post-February dates in leap years carry a +1 DOY offset (Mar 1 = 61,
+        # Dec 31 = 366). Shift them back so the same calendar date always maps
+        # to the same DOY and the climatology stays within 1..365.
+        is_leap_year = d["date"].dt.is_leap_year
+        d.loc[is_leap_year & (d["month"] >= 3), "doy"] -= 1
     elif cfg.leapday_policy == "drop":
         d = d[~((d["month"] == 2) & (d["day"] == 29))].copy()
 

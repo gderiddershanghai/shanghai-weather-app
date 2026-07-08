@@ -52,9 +52,9 @@
 			cy={py}
 			r={Math.max(radius + 6, 12)}
 			class="hit"
-			role={dot.featured ? 'button' : undefined}
-			tabindex={dot.featured ? 0 : undefined}
-			aria-label={dot.featured ? dot.id : undefined}
+			role="button"
+			tabindex={dot.featured ? 0 : -1}
+			aria-label={dot.id}
 			onmouseenter={() => onfocus?.(dot, px, py)}
 			onmouseleave={() => onblur?.()}
 			onfocus={() => onfocus?.(dot, px, py)}

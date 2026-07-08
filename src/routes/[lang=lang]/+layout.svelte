@@ -9,11 +9,11 @@
 	const i18n = createI18n(() => data.lang);
 	setI18n(i18n);
 
-	// Same page in the other language: swap the /en/ or /zh/ path segment.
+	// Same page in the other language: swap the /en/ or /zh/ segment inside the
+	// full pathname (which already includes any deployment base path). Never
+	// string-concat `base` with pathnames — with paths.relative it's '..'-style.
 	const otherLang = $derived(data.lang === 'en' ? 'zh' : 'en');
-	const switchHref = $derived(
-		base + page.url.pathname.slice(base.length).replace(/^\/(en|zh)\//, `/${otherLang}/`)
-	);
+	const switchHref = $derived(page.url.pathname.replace(/\/(en|zh)(\/|$)/, `/${otherLang}$2`));
 	const onExplore = $derived(page.url.pathname.includes('/explore/'));
 </script>
 
@@ -22,8 +22,8 @@
 	<meta name="description" content={i18n.t('site.tagline')} />
 	<meta property="og:title" content={i18n.t('site.title')} />
 	<meta property="og:locale" content={data.lang === 'zh' ? 'zh_CN' : 'en_US'} />
-	<link rel="alternate" hreflang="en" href="{page.url.origin}{base}/en/" />
-	<link rel="alternate" hreflang="zh" href="{page.url.origin}{base}/zh/" />
+	<link rel="alternate" hreflang="en" href={page.url.pathname.replace(/\/(en|zh)(\/|$)/, '/en$2')} />
+	<link rel="alternate" hreflang="zh" href={page.url.pathname.replace(/\/(en|zh)(\/|$)/, '/zh$2')} />
 </svelte:head>
 
 <header class="site-header">

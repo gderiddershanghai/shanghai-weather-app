@@ -83,6 +83,12 @@ def emit_outliers(df_outliers: pd.DataFrame) -> dict:
 
 
 def emit_precip_events(tables: dict) -> list[dict]:
+    # Shanghai is wet: "2+ consecutive rain days" matches thousands of runs.
+    # Ship only the rankable tail the app can actually show.
+    tables = dict(tables)
+    tables["rain_events"] = tables["rain_events"].head(100)
+    tables["high_wind_days"] = tables["high_wind_days"].head(60)
+
     events: list[dict] = []
     for _, r in tables["rain_events"].iterrows():
         start = r["start_date"].strftime("%Y-%m-%d")

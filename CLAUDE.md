@@ -2,53 +2,46 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## What this project is
+## Commands
 
-A client-side data-visualization app that analyzes **Shanghai weather and air quality** (1980–present) to test common claims — hotter summers, changing rainfall, better/worse air quality — and present the answers as **clear, explainable charts**. Prioritize clarity, simple methods, and shareable visuals over complex modeling or infrastructure.
-
-## Current state (important)
-
-The repo is mostly **scaffolding**. `src/app/index.js` and `src/app/routes.js` are one-line stubs; nearly every directory under `src/` (`modes/`, `viz/`, `components/`, `styles/`, `app/state/`) contains only `.gitkeep`. There is **no `package.json`, bundler, test runner, or lint config yet** — so no build/test/lint commands exist to run. When adding the frontend, you are choosing the stack; keep it light (see constraints below).
-
-The only real, working code is the Python analysis layer in `src/analysis_py/`.
-
-## Python analysis layer
-
-`src/analysis_py/temperature_datasets.py` is a self-contained pandas/numpy pipeline that turns raw daily weather into chart-ready tables. Entry point:
-
-```python
-from src.analysis_py.temperature_datasets import compute_temperature_tables, TempConfig
-df_daily, df_clim, df_enriched, df_outliers, df_events = compute_temperature_tables(df_raw)
+```bash
+npm run dev          # dev server (vite)
+npm run build        # static build -> build/   (CI adds BASE_PATH=/shanghai-weather-app)
+npm run check        # svelte-kit sync + svelte-check (keep at 0 errors/warnings)
+npm run lint         # prettier --check
+npm run data         # regenerate static/data/derived/*.json from data/*.csv
+uv sync              # install Python deps (pyproject.toml; uv, not pip)
+uv run python -m pipeline.fetch.open_meteo   # append new weather days (also does backfills)
+uv run python -m pipeline.fetch.aqi_feed     # append today's AQI (needs WAQI_TOKEN) / --import-csv for backfill
+uv run python -m pipeline.og_images          # fetch event thumbnails (LOCAL only, commit results)
 ```
 
-Key design points to understand before editing:
+There is no test runner; verification = `npm run check` + `npm run build` + running `npm run data` cleanly (it contains build-failing sanity assertions).
 
-- **Day-of-year (DOY) climatology is the backbone.** Everything is computed per-DOY (quantiles p01/p05/p50/p95/p99), then smoothed with a **circular** rolling window (`circular_rolling`) so Dec 31 ↔ Jan 1 wrap correctly. Leap days are mapped to Feb 28 (DOY 59) by default to keep DOY stats stable across years.
-- **"Real" vs "feels-like" run in parallel.** Real uses `temperature_2m_max/min`; feels-like uses `apparent_temperature_max/min`. The code deliberately mirrors both through the same functions with `tmax/tmin` vs `atmax/atmin` prefixes — keep that symmetry when extending.
-- **Severity is anomaly vs DOY median**, not absolute temperature: hot = `value − p50(doy)`, cold = `p50(doy) − value`. Both are "higher = more extreme" so tables sort uniformly.
-- Two extremes tables: `df_outliers` (single extreme days, filtered by p99/p95 threshold) and `df_events` (multi-day heat/cold waves, ≥`min_event_days`, ranked by peak severity then duration).
-- All tuning lives in the frozen `TempConfig` dataclass (column names, quantiles, smoothing window, leap-day policy). Prefer changing config over hard-coding.
+## Architecture
 
-## Data
+Two layers with a hard boundary:
 
-- **CSV is the source of truth**, kept as static files in `public/data/` (`weather_shanghai.csv`, `aqi_shanghai.csv`). Easy to inspect and replace.
-- **Derived JSON is allowed** for chart-ready payloads (e.g. monthly rollups) under `public/data/derived/`.
-- Weather CSVs have an unnamed index column plus `time`, `temperature_2m_*`, `apparent_temperature_*`, `precipitation_*`, wind, sunshine, and `uv_index_max`. `weather_shanghai2.csv` is the same schema with apparent-temperature columns backfilled.
-- Raw/unprocessed source files and spreadsheets live in `shanghai_weather/`; exploratory notebooks live in `Nbs/`.
+1. **`pipeline/` (Python, build time)** — owns ALL statistics. `build_derived.py` orchestrates: `temperature.py` (DOY climatology p01–p99 with circular smoothing, anomaly-ranked outliers, heat/cold waves), `precip_wind.py`, `aqi.py`, `events_curated.py` → compact JSON in `static/data/derived/`. Derived JSON is regenerated in CI and **not committed** (except `event-images/`).
+2. **`src/` (SvelteKit, Svelte 5 runes)** — renders SVG charts with D3 as a math library only (no d3-selection). Client JS may filter/group the shipped tables but never re-derives statistics.
 
-## Two application modes (must share primitives)
+**One store, two drivers.** `src/lib/stores/chartState.ts` holds all chart config. Story mode (`src/lib/story/steps.ts` — steps are *partial presets* applied on scroll via `Scrolly.svelte`) and Explore mode (`src/lib/explore/ControlPanel.svelte`) both write it; chart components in `src/lib/charts/` only read it (plus `stores/tweens.ts` for animated domains). Never duplicate chart logic per mode — that's the cardinal rule.
 
-- **Story mode** — fixed scrollytelling narrative; each section = one claim, one chart, one takeaway.
-- **Explore mode** — free interactive inspection with filters (time range, metric, thresholds).
+**i18n:** prerendered `/en/` + `/zh/` via `[lang=lang]` routes; copy is side-by-side `{en, zh}` in `src/lib/i18n/copy.json`; `hooks.server.ts` stamps `<html lang>` at prerender.
 
-Both modes must reuse the **same data, chart primitives, and scales**. Do **not** duplicate chart logic between them — that's the primary architectural rule. Charts belong in `src/viz/charts/`, with data loaders/transforms and encodings/scales factored into `src/viz/data/` and `src/viz/encodings/`.
+## Contracts & sharp edges (violating these breaks prod)
 
-## Constraints
+- `daily.json` column order: `pipeline/config.py DAILY_COMPACT_COLUMNS` ⇄ `src/lib/data/daily.ts COL` are hand-mirrored; a runtime assert catches drift. Change both or neither.
+- `base` from `$app/paths` may be `'..'`-relative during SSR (`paths.relative`): never slice/concat it with pathnames. Use it only as `${base}/...` prefix.
+- Leap-day DOY: Feb 29 → 59 and post-Feb leap dates shift −1 (`temperature.py add_time_fields`) — keeps every calendar date in one DOY bin. Don't regress.
+- Dates are formatted manually (`utils/format.ts`, no `Intl`); `events.csv` is dd/mm/yyyy; compact tables use yyyymmdd ints.
+- Weather fetches stop at today−6 (ERA5 archive lag). "Data through" comes from `meta.json`.
+- `Nbs/` notebooks and `shanghai_weather/` raw files are read-only archives.
+- Chart conventions: tokens in `src/app.css`; same category = same color everywhere; hot/cold dots are position-encoded (above/below the band), never color-only; direct labels over legends.
+- Commits: no AI co-author trailers.
 
-- Developed and run **inside WSL / Linux**. Use Linux paths and tooling; don't assume Windows paths.
-- Do **not** modify or depend on `.ipynb` files in `Nbs/` — they are exploratory only.
-- Do **not** add backends, databases, or build-heavy frameworks.
-- Do **not** add complex statistical models or opaque transformations — methods should stay explainable.
-- You may freely reorganize/rename files for clarity (including moving cleaned CSVs into `public/data/`) as long as the structure stays minimal.
+## CI
 
-Note: `AGENTS.MD` holds the fuller version of this intent and the target folder layout; keep the two consistent if you change project direction.
+`deploy.yml`: push→main builds derived data (uv) + site (BASE_PATH set) → GitHub Pages. `daily-data.yml`: 07:30 Shanghai cron appends weather/AQI, commits, then calls deploy via `workflow_call` (GITHUB_TOKEN pushes don't retrigger `push` workflows).
+
+`AGENTS.MD` holds the same picture with more design rationale — keep the two in sync.

@@ -77,19 +77,43 @@
 	}
 	.dash {
 		flex: 1;
-		height: 6px;
+		height: 5px;
 		border: none;
 		border-radius: 3px;
-		background: var(--color-border);
 		cursor: pointer;
 		padding: 0;
 		min-width: 8px;
+		/* upcoming: pale tint of the chapter color */
+		background: color-mix(in srgb, var(--dash-color, var(--color-border)) 22%, var(--color-paper));
+		transition: height 150ms ease;
 	}
 	.dash.done {
-		background: var(--color-ink-muted);
+		background: color-mix(in srgb, var(--dash-color, var(--color-ink-muted)) 65%, var(--color-paper));
 	}
 	.dash.current {
-		background: var(--color-ink);
+		background: var(--dash-color, var(--color-ink));
+		height: 9px;
+	}
+	.dash.chapter-hook {
+		--dash-color: var(--chapter-hook);
+	}
+	.dash.chapter-heat {
+		--dash-color: var(--chapter-heat);
+	}
+	.dash.chapter-cold {
+		--dash-color: var(--chapter-cold);
+	}
+	.dash.chapter-rain {
+		--dash-color: var(--chapter-rain);
+	}
+	.dash.chapter-aqi {
+		--dash-color: var(--chapter-aqi);
+	}
+	.dash.chapter-interplay {
+		--dash-color: var(--chapter-interplay);
+	}
+	.dash.chapter-explore {
+		--dash-color: var(--chapter-explore);
 	}
 	.counter {
 		font-size: 0.75rem;

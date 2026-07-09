@@ -7,6 +7,7 @@
 	import TimeSeriesChart from '$lib/charts/TimeSeriesChart.svelte';
 	import MonthlyHeatmap from '$lib/charts/MonthlyHeatmap.svelte';
 	import ScatterChart from '$lib/charts/ScatterChart.svelte';
+	import AqiScaleChart from '$lib/charts/AqiScaleChart.svelte';
 	import type {
 		Climatology,
 		CompactTable,
@@ -56,6 +57,8 @@
 				<MonthlyHeatmap {monthly} />
 			{:else if $chartState.chartType === 'scatter' && tempAqi}
 				<ScatterChart {tempAqi} />
+			{:else if $chartState.chartType === 'aqiScale'}
+				<AqiScaleChart />
 			{/if}
 		</div>
 	{/key}

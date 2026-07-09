@@ -4,6 +4,7 @@
 	// can NEVER cover the chart. Navigation: ← → keys, tap zones on the chart's
 	// outer edges, horizontal swipe, and the progress bar's buttons.
 	import { onMount, type Snippet } from 'svelte';
+	import { get } from 'svelte/store';
 	import { activeStepIndex, next, prev, restoreFromHash } from '$lib/stores/story';
 	import { steps } from './steps';
 	import { getI18n } from '$lib/i18n';
@@ -20,11 +21,38 @@
 
 	const i18n = getI18n();
 
+	let deckEl: HTMLElement | null = $state(null);
+
 	onMount(() => {
 		restoreFromHash();
 		const onHash = () => restoreFromHash();
 		window.addEventListener('hashchange', onHash);
-		return () => window.removeEventListener('hashchange', onHash);
+
+		// Scroll navigation — coexists with arrows/taps/swipe, never replaces
+		// them. Wheel over the deck advances/retreats steps (debounced); at the
+		// first/last step the event is NOT captured, so normal page scrolling
+		// resumes and the reader can reach the intro above / outro below.
+		let wheelLock = 0;
+		const onWheel = (e: WheelEvent) => {
+			if (Math.abs(e.deltaY) < 24) return; // ignore trackpad jitter
+			const i = get(activeStepIndex);
+			const releasing =
+				(e.deltaY > 0 && i === steps.length - 1) || (e.deltaY < 0 && i === 0);
+			if (releasing) return; // hand back to page scroll at the ends
+			e.preventDefault();
+			const now = Date.now();
+			if (now - wheelLock < 650) return;
+			wheelLock = now;
+			if (e.deltaY > 0) next();
+			else prev();
+		};
+		// manual listener: must be non-passive to preventDefault
+		deckEl?.addEventListener('wheel', onWheel, { passive: false });
+
+		return () => {
+			window.removeEventListener('hashchange', onHash);
+			deckEl?.removeEventListener('wheel', onWheel);
+		};
 	});
 
 	function onKeydown(e: KeyboardEvent) {
@@ -68,7 +96,7 @@
 
 <svelte:window onkeydown={onKeydown} />
 
-<section class="deck" aria-roledescription="story deck">
+<section class="deck" aria-roledescription="story deck" bind:this={deckEl}>
 	<!-- svelte-ignore a11y_no_static_element_interactions -- swipe is a redundant
 	     affordance; buttons/keys provide the accessible path -->
 	<div class="deck-chart" onpointerdown={onPointerDown} onpointerup={onPointerUp}>
@@ -122,6 +150,7 @@
 		justify-content: center;
 		min-width: 0;
 		min-height: 0;
+		overflow: hidden; /* charts must never bleed into the progress bar */
 		touch-action: pan-y;
 	}
 	.deck-copy {

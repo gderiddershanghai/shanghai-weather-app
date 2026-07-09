@@ -137,9 +137,14 @@ export const steps: StoryStep[] = [
 		}
 	},
 	{
+		id: 'aqi-scale',
+		chapter: 'aqi',
+		chart: { chartType: 'aqiScale' }
+	},
+	{
 		id: 'aqi-2',
 		chapter: 'aqi',
-		chart: {}
+		chart: { chartType: 'heatmap', metric: 'pm25' }
 	},
 
 	// --- Interplay ----------------------------------------------------------------

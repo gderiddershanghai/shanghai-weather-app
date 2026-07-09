@@ -39,6 +39,9 @@
 
 	const yCol = $derived($chartState.scatterY);
 
+	// Declutter: points are gray CONTEXT (Knaflic), the binned-median lines are
+	// the signal. All four season lines always render — the focused season in
+	// color, the rest as gray ghosts, so comparisons stay possible.
 	const points = $derived(
 		tempAqi.rows
 			.map((r) => ({
@@ -53,19 +56,18 @@
 			)
 	);
 
-	const medianLines = $derived.by(() => {
-		const filter = $chartState.seasonFilter;
-		const seasons = filter == null ? [0, 1, 2, 3] : [filter];
-		return seasons.map((s) => ({
+	const medianLines = $derived(
+		[0, 1, 2, 3].map((s) => ({
 			season: s,
+			focused: $chartState.seasonFilter == null || s === $chartState.seasonFilter,
 			data: tempAqi.binned
 				.filter((b) => b.season === s)
 				.map((b) => ({
 					x: b.tmax_bin + 1,
 					y: yCol === 'pm25' ? b.pm25_median : b.o3_median
 				}))
-		}));
-	});
+		}))
+	);
 
 	const xDomain: [number, number] = $derived.by(() => {
 		const xs = points.map((p) => p.x);
@@ -93,18 +95,25 @@
 
 			<g class="points" style="shape-rendering: optimizeSpeed">
 				{#each points as p, i (i)}
-					<circle cx={x(p.x)} cy={y(p.y!)} r="2" fill={SEASON_COLORS[p.season]} opacity="0.35" />
+					<circle cx={x(p.x)} cy={y(p.y!)} r="1.8" fill="var(--color-ink-muted)" opacity="0.14" />
 				{/each}
 			</g>
 
-			{#each medianLines as { season, data } (season)}
-				<LinePath {x} {y} {data} stroke={SEASON_COLORS[season]} strokeWidth={2.5} />
+			{#each medianLines as { season, focused, data } (season)}
+				<LinePath
+					{x}
+					{y}
+					{data}
+					stroke={focused ? SEASON_COLORS[season] : 'var(--color-ink-muted)'}
+					strokeWidth={focused ? 2.5 : 1.25}
+					opacity={focused ? 1 : 0.35}
+				/>
 			{/each}
 
-			<!-- direct season labels at line ends (no legend) -->
-			{#each medianLines as { season, data } (season)}
+			<!-- direct season labels at line ends (no legend); focused seasons only -->
+			{#each medianLines as { season, focused, data } (season)}
 				{@const last = data.filter((d) => d.y != null).at(-1)}
-				{#if last}
+				{#if last && focused}
 					<text
 						x={x(last.x) + 6}
 						y={y(last.y!)}

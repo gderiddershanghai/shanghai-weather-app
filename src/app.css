@@ -12,6 +12,15 @@
 	--color-band: #f3e8d2; /* p05–p95 "normal range" band (xkcd beige) */
 	--color-median: #8a7a5c; /* p50 line */
 
+	/* Chapter accents (progress bar, annotations) — one hue per story chapter */
+	--chapter-hook: #6b7280;
+	--chapter-heat: #c43d4b;
+	--chapter-cold: #3d7dc4;
+	--chapter-rain: #2a9d8f;
+	--chapter-aqi: #7b5aa6;
+	--chapter-interplay: #b45309;
+	--chapter-explore: #1f2430;
+
 	/* Type: humanist stack with Chinese fallbacks */
 	--font-body:
 		'Source Sans 3', 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',

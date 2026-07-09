@@ -5,7 +5,7 @@
 import { writable } from 'svelte/store';
 import type { DailyMetric } from '$lib/data/daily';
 
-export type ChartType = 'climatology' | 'timeseries' | 'heatmap' | 'scatter';
+export type ChartType = 'climatology' | 'timeseries' | 'heatmap' | 'scatter' | 'aqiScale';
 export type TempMode = 'real' | 'feels_like';
 export type DotThreshold = 'p99' | 'p95' | 'none';
 export type DotTail = 'hot' | 'cold' | 'both';

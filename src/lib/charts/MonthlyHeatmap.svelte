@@ -55,23 +55,19 @@
 	});
 	const color = $derived(scaleSequential(config.ramp).domain(domain));
 
+	// Transposed: years run left->right (time reads like text), 12 month rows
+	// always fit vertically — the chart can never overflow the deck.
 	const CELL = 16;
 	const GAP = 2;
-	const LABEL_W = 44;
+	const LABEL_W = 48;
 	const LABEL_H = 22;
 	const LEGEND_H = 40;
 
-	const width = $derived(LABEL_W + 12 * (CELL + GAP));
-	const height = $derived(LABEL_H + years.length * (CELL + GAP) + LEGEND_H);
+	const width = $derived(LABEL_W + years.length * (CELL + GAP));
+	const height = $derived(LABEL_H + 12 * (CELL + GAP) + LEGEND_H);
 
 	const legendStops = [0, 0.25, 0.5, 0.75, 1];
-	const legendY = $derived(LABEL_H + years.length * (CELL + GAP) + 14);
-
-	function monthTick(m: number): string {
-		// zh: full "1月"; en: 3-letter, every other month to avoid J/M/A ambiguity
-		if (i18n.lang === 'zh') return monthLabel(m, 'zh');
-		return monthLabel(m, 'en');
-	}
+	const legendY = $derived(LABEL_H + 12 * (CELL + GAP) + 14);
 
 	let hovered = $state<{ cell: (typeof cells)[number]; px: number; py: number } | null>(null);
 	let frameWidth = $state(0);
@@ -79,28 +75,27 @@
 
 <figure class="heatmap" bind:clientWidth={frameWidth}>
 	<svg {width} {height} viewBox="0 0 {width} {height}" role="img" aria-label={config.column}>
-		{#each Array(12) as _, m (m)}
-			{#if i18n.lang === 'zh' || m % 2 === 0}
+		{#each years as year, yi (year)}
+			{#if year % 5 === 0}
 				<text
-					x={LABEL_W + m * (CELL + GAP) + CELL / 2}
+					x={LABEL_W + yi * (CELL + GAP) + CELL / 2}
 					y={LABEL_H - 8}
 					text-anchor="middle"
 					class="label"
+					class:decade={year % 10 === 0}
 				>
-					{monthTick(m)}
-				</text>
-			{/if}
-		{/each}
-		{#each years as year, yi (year)}
-			{#if year % 5 === 0}
-				<text x={LABEL_W - 6} y={LABEL_H + yi * (CELL + GAP) + CELL / 2} dy="0.32em" text-anchor="end" class="label" class:decade={year % 10 === 0}>
 					{year}
 				</text>
 			{/if}
 		{/each}
+		{#each Array(12) as _, m (m)}
+			<text x={LABEL_W - 6} y={LABEL_H + m * (CELL + GAP) + CELL / 2} dy="0.32em" text-anchor="end" class="label">
+				{monthLabel(m, i18n.lang)}
+			</text>
+		{/each}
 		{#each cells as cell (cell.year * 100 + cell.month)}
-			{@const px = LABEL_W + (cell.month - 1) * (CELL + GAP)}
-			{@const py = LABEL_H + years.indexOf(cell.year) * (CELL + GAP)}
+			{@const px = LABEL_W + years.indexOf(cell.year) * (CELL + GAP)}
+			{@const py = LABEL_H + (cell.month - 1) * (CELL + GAP)}
 			<rect
 				x={px}
 				y={py}

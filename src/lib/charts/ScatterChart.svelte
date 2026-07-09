@@ -26,6 +26,8 @@
 
 	// Okabe–Ito, one hue per season: DJF blue, MAM green, JJA vermillion, SON amber
 	const SEASON_COLORS = ['#0072B2', '#009E73', '#D55E00', '#E69F00'];
+	// darkened variants for TEXT so labels meet contrast on the paper bg
+	const SEASON_TEXT = ['#005a8c', '#00694f', '#a34500', '#8a5f00'];
 	const SEASON_KEYS = ['seasons.djf', 'seasons.mam', 'seasons.jja', 'seasons.son'];
 
 	const IDX = $derived({
@@ -86,7 +88,7 @@
 <figure class="scatter">
 	<Chart {xDomain} {yDomain} height={440} ariaLabel={i18n.t('site.tagline')}>
 		{#snippet children({ x, y })}
-			<AxisY {x} {y} unit=" {yCol.toUpperCase()}" />
+			<AxisY {x} {y} unit=" AQI" />
 			<AxisX {x} {y} ticks={tempTicks} baseline />
 
 			<g class="points" style="shape-rendering: optimizeSpeed">
@@ -107,7 +109,7 @@
 						x={x(last.x) + 6}
 						y={y(last.y!)}
 						dy="0.32em"
-						fill={SEASON_COLORS[season]}
+						fill={SEASON_TEXT[season]}
 						class="season-label"
 					>
 						{i18n.t(SEASON_KEYS[season])}

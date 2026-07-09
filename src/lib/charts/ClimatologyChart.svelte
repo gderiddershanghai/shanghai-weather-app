@@ -146,6 +146,23 @@
 			{#if $chartState.showBand}
 				<Band {x} {y} data={bandData} />
 			{/if}
+
+			<!-- on-chart key: readers must not need the prose to decode the marks -->
+			<g class="chart-key" aria-hidden="true" transform="translate({x.range()[0] + 6}, {y.range()[1] + 4})">
+				{#if $chartState.showBand}
+					<rect x="0" y="0" width="14" height="9" rx="2" class="key-band" />
+					<text x="19" y="8">{i18n.t('chart.key.band')}</text>
+				{/if}
+				{#if $chartState.showMedian}
+					<line x1="0" x2="14" y1="20" y2="20" class="key-median" />
+					<text x="19" y="23">{i18n.t('chart.key.median')}</text>
+				{/if}
+				{#if dots.length > 0}
+					<circle cx="4" cy="34" r="3.5" class="key-dot hot" />
+					<circle cx="11" cy="34" r="3.5" class="key-dot cold" />
+					<text x="19" y="38">{i18n.t('chart.key.dots')}</text>
+				{/if}
+			</g>
 			{#if $chartState.showP99}
 				<LinePath {x} {y} data={p99Data} stroke="var(--color-hot)" strokeWidth={1} dashed opacity={0.7} />
 			{/if}
@@ -203,6 +220,29 @@
 	}
 	.card-fixed :global(.event-card) {
 		position: static;
+	}
+	.chart-key text {
+		font-size: 0.7rem;
+		fill: var(--color-ink-muted);
+		paint-order: stroke;
+		stroke: var(--color-paper);
+		stroke-width: 3;
+	}
+	.chart-key .key-band {
+		fill: var(--color-band);
+		stroke: var(--color-median);
+		stroke-width: 0.5;
+	}
+	.chart-key .key-median {
+		stroke: var(--color-median);
+		stroke-width: 2;
+		stroke-linecap: round;
+	}
+	.chart-key .key-dot.hot {
+		fill: var(--color-hot);
+	}
+	.chart-key .key-dot.cold {
+		fill: var(--color-cold);
 	}
 	.card-anchor :global(.event-card) {
 		transform: translate(12px, -50%);

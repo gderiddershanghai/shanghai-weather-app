@@ -1,13 +1,10 @@
 <script lang="ts">
-	// Story mode: intro, then the scroll-driven chapters. One subscriber
-	// resolves the active step and applies its chart preset — charts never
-	// know a story exists.
+	// Story mode: intro, then the arrow/tap-driven step deck. Navigation lives
+	// in the story store (goTo applies chart presets) — charts never know a
+	// story exists.
 	import { onMount } from 'svelte';
 	import { getI18n } from '$lib/i18n';
-	import { applyPreset } from '$lib/stores/chartState';
-	import { activeStepId } from '$lib/stores/story';
-	import { steps, stepById } from '$lib/story/steps';
-	import Scrolly from '$lib/story/Scrolly.svelte';
+	import StepDeck from '$lib/story/StepDeck.svelte';
 	import StoryStep from '$lib/story/StoryStep.svelte';
 	import StickyChart from '$lib/story/StickyChart.svelte';
 	import {
@@ -58,19 +55,6 @@
 		}
 	});
 
-	// step activation -> chart preset
-	$effect(() => {
-		const step = $activeStepId ? stepById.get($activeStepId) : null;
-		if (step) {
-			applyPreset({
-				...step.chart,
-				activeAnnotations: step.annotations ?? [],
-				focusedEventId: step.focusEvent ?? null
-			});
-		}
-	});
-
-	const stepIds = steps.map((s) => s.id);
 </script>
 
 <section class="intro">
@@ -82,14 +66,14 @@
 {#if loadError}
 	<p class="error">data failed to load: {loadError}</p>
 {:else}
-	<Scrolly {stepIds}>
+	<StepDeck>
 		{#snippet graphic()}
 			<StickyChart {clim} {outliers} {curatedEvents} {meta} {daily} {monthly} {tempAqi} />
 		{/snippet}
-		{#snippet step(id)}
-			<StoryStep copyKey="steps.{id}" active={$activeStepId === id} />
+		{#snippet step(id, _i, active)}
+			<StoryStep copyKey="steps.{id}" {active} />
 		{/snippet}
-	</Scrolly>
+	</StepDeck>
 
 	<section class="outro">
 		<h2>{i18n.t('story.outroTitle')}</h2>

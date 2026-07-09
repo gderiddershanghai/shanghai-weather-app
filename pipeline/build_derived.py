@@ -153,6 +153,7 @@ def emit_monthly(df_daily: pd.DataFrame, aqi: pd.DataFrame) -> dict:
     d = df_daily.copy()
     g = d.groupby(["year", "month"])
     monthly = g.agg(
+        days=("temperature_2m_max", "count"),  # coverage: frontend hides sparse cells
         tmax_mean=("temperature_2m_max", "mean"),
         tmin_mean=("temperature_2m_min", "mean"),
         days_ge_35=("temperature_2m_max", lambda s: int((s >= 35).sum())),
@@ -166,6 +167,7 @@ def emit_monthly(df_daily: pd.DataFrame, aqi: pd.DataFrame) -> dict:
     am = (
         aqi.groupby(["year", "month"])
         .agg(
+            pm25_days=("pm25", "count"),
             pm25_median=("pm25", "median"),
             days_pm25_gt_100=("pm25", lambda s: int((s > 100).sum())),
         )
@@ -173,9 +175,9 @@ def emit_monthly(df_daily: pd.DataFrame, aqi: pd.DataFrame) -> dict:
     )
     monthly = monthly.merge(am, on=["year", "month"], how="left")
     cols = [
-        "year", "month", "tmax_mean", "tmin_mean", "days_ge_35", "days_le_0",
+        "year", "month", "days", "tmax_mean", "tmin_mean", "days_ge_35", "days_le_0",
         "prcp_sum", "wet_days", "prcp_max_day", "gust_max",
-        "pm25_median", "days_pm25_gt_100",
+        "pm25_days", "pm25_median", "days_pm25_gt_100",
     ]
     return df_to_compact(monthly, cols)
 

@@ -13,6 +13,20 @@
 		"zh": "天气数据：Open-Meteo (ERA5) · 空气质量：aqicn.org"
 	},
 	"story.scrollHint": { "en": "scroll", "zh": "向下滚动" },
+	"story.arrowHint": {
+		"en": "tap the sides or use ← → arrow keys",
+		"zh": "点击两侧或使用 ← → 方向键"
+	},
+	"story.nav.prev": { "en": "Previous step", "zh": "上一步" },
+	"story.nav.next": { "en": "Next step", "zh": "下一步" },
+	"story.progressLabel": { "en": "Story progress", "zh": "故事进度" },
+	"story.chapter.hook": { "en": "A normal year", "zh": "正常的一年" },
+	"story.chapter.heat": { "en": "Heat", "zh": "酷暑" },
+	"story.chapter.cold": { "en": "Cold", "zh": "严寒" },
+	"story.chapter.rain": { "en": "Rain & storms", "zh": "风雨" },
+	"story.chapter.aqi": { "en": "Air", "zh": "空气" },
+	"story.chapter.interplay": { "en": "Heat × haze", "zh": "温度×雾霾" },
+	"story.chapter.explore": { "en": "Your turn", "zh": "轮到你" },
 	"story.outroTitle": { "en": "Now it's your turn", "zh": "现在轮到你了" },
 	"story.outroBody": {
 		"en": "Everything you just saw — and everything we didn't show you — is open to explore. Filter by year, metric, or threshold and see what you find.",
@@ -59,8 +73,8 @@
 
 	"steps.hook-1.title": { "en": "What a normal year feels like", "zh": "正常的一年是什么样" },
 	"steps.hook-1.body": {
-		"en": "Every day of the year has a 'normal' in Shanghai. The band shows the range that 9 out of 10 days have stayed inside since 1980; the line is the typical daily high. Muggy Augusts, damp Januaries — the city's rhythm.",
-		"zh": "在上海，一年中的每一天都有自己的“正常值”。色带显示自1980年以来九成日子所处的温度范围；曲线是典型的每日最高温。闷热的八月、湿冷的一月——这就是这座城市的节奏。"
+		"en": "Every day of the year has a 'normal' in Shanghai. The band stretches from the typical coldest nights (its bottom edge) up to the typical hottest afternoons (its top); the line traces the typical daily high. Muggy Augusts, damp Januaries — the city's rhythm.",
+		"zh": "在上海，一年中的每一天都有自己的“正常值”。色带从典型的最冷夜晚（下缘）一直延伸到典型的最热午后（上缘）；曲线描出典型的每日最高温。闷热的八月、湿冷的一月——这就是这座城市的节奏。"
 	},
 	"steps.hook-2.title": { "en": "…and the days that broke it", "zh": "……以及打破常规的日子" },
 	"steps.hook-2.body": {
@@ -118,13 +132,13 @@
 
 	"steps.aqi-1.title": { "en": "The air, remembered", "zh": "记忆中的空气" },
 	"steps.aqi-1.body": {
-		"en": "If you lived here in the mid-2010s you remember checking PM2.5 before opening a window. The heatmap doesn't forget either: dark winters in 2014 and 2015, when the median day's PM2.5 read 116 — 'unhealthy' on the US scale. (China's own AQI scale is more lenient at the same concentrations — same air, different color on the app.)",
-		"zh": "如果你在2010年代中期住在这里，你一定记得开窗前先看PM2.5。这张热力图也没有忘记：2014、2015年那些深色的冬天，PM2.5中位数高达116——按美标属于“不健康”。（同样的浓度，中国自己的AQI标准宽松一些——同样的空气，App上的颜色却不同。）"
+		"en": "If you lived here in the mid-2010s you remember checking the air before opening a window. The heatmap doesn't forget either: dark winters in 2014 and 2015, when the typical day's PM2.5 index sat at 116 on the US scale — 'unhealthy for sensitive groups', a level China's own standard files under a milder category. Same air, different color depending on whose app you checked. (All values here use the US index.)",
+		"zh": "如果你在2010年代中期住在这里，你一定记得开窗前先看空气质量。这张热力图也没有忘记：2014、2015年那些深色的冬天，PM2.5指数按美标通常在116——“对敏感人群不健康”，而按中国标准，同样的空气会被归入更温和的等级。同样的空气，不同的App显示不同的颜色。（本图数值均采用美标指数。）"
 	},
 	"steps.aqi-2.title": { "en": "…is actually getting cleaner", "zh": "……其实正在变干净" },
 	"steps.aqi-2.body": {
-		"en": "Watch the rows lighten. The median PM2.5 day fell from 116 in 2014 to 77 in 2025; days over 100 dropped from 227 a year to 87. Still far from pristine — but this is one claim the data settles clearly: Shanghai's air is better than it was a decade ago.",
-		"zh": "看着一行行颜色变浅。PM2.5中位数从2014年的116降到2025年的77；超过100的天数从每年227天降到87天。离真正干净还很远——但这一点数据说得很清楚：上海的空气比十年前好了。"
+		"en": "Watch the rows lighten. The typical day's PM2.5 index fell from 116 in 2014 to 77 in 2025; days over 100 dropped from 227 a year to 87. Still far from pristine — but this is one claim the data settles clearly: Shanghai's air is better than it was a decade ago.",
+		"zh": "看着一行行颜色变浅。PM2.5指数中位数从2014年的116降到2025年的77；超过100的天数从每年227天降到87天。离真正干净还很远——但这一点数据说得很清楚：上海的空气比十年前好了。"
 	},
 
 	"steps.interplay-1.title": { "en": "Heat and haze, together", "zh": "高温与雾霾的纠缠" },
@@ -140,7 +154,14 @@
 
 	"steps.wrap-1.title": { "en": "Zoom back out", "zh": "拉远视角" },
 	"steps.wrap-1.body": {
-		"en": "One year, forty-five times over. The band is where Shanghai's weather is supposed to live; the dots are where it escaped. Rain, storms and the air itself are next — coming in the following chapters.",
-		"zh": "同样的一年，重复了四十五次。色带是上海天气“应该在”的位置；圆点是它逃逸的时刻。接下来的章节：风雨、台风，以及空气本身。"
-	}
+		"en": "One year, forty-five times over. The band is where Shanghai's weather is supposed to live; the dots are where it escaped — the heat waves, the frozen pipes, the typhoons and the smog you just met. Now take the controls yourself.",
+		"zh": "同样的一年，重复了四十五次。色带是上海天气“应该在”的位置；圆点是它逃逸的时刻——你刚刚读到的热浪、冻裂的水管、台风与雾霾。现在，轮到你亲自操作了。"
+	},
+
+	"chart.key.band": {
+		"en": "typical range: coldest nights → hottest afternoons",
+		"zh": "常态区间：最冷夜晚 → 最热午后"
+	},
+	"chart.key.median": { "en": "typical daily high", "zh": "典型日最高温" },
+	"chart.key.dots": { "en": "top-1% extreme days", "zh": "最极端1%的日子" }
 }

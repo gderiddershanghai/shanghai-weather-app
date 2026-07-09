@@ -66,6 +66,7 @@ export interface CuratedEvent {
 export interface Meta {
 	built_at: string;
 	weather: { start: string; end: string; rows: number };
+	aqi?: { start: string; end: string; rows: number; pm25_start: string };
 	counts: { outlier_days: number; temp_events: number; curated_events: number };
 	config: Record<string, number>;
 }

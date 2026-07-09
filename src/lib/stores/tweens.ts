@@ -22,8 +22,17 @@ const yDomainTween = new Tween<[number, number]>([0, 1], {
 });
 let yIsAuto = true;
 
+let lastChartType: string | null = null;
+
 chartState.subscribe((s) => {
-	xDomainTween.target = s.xDomain;
+	if (s.chartType !== lastChartType) {
+		// x means different things per chart (DOY vs years) — never tween
+		// across the boundary, snap instead
+		xDomainTween.set(s.xDomain, { duration: 0 });
+		lastChartType = s.chartType;
+	} else {
+		xDomainTween.target = s.xDomain;
+	}
 	if (s.yDomain) {
 		if (yIsAuto) {
 			// jumping from auto: snap, don't tween from a stale domain

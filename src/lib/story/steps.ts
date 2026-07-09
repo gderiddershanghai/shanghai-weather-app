@@ -53,6 +53,7 @@ export const steps: StoryStep[] = [
 		chapter: 'heat',
 		chart: {
 			xDomain: SUMMER,
+			yDomain: [20, 44], // zoom y too — the band compresses, dots get room
 			dotTail: 'hot',
 			tempMode: 'real',
 			focusedEventId: null
@@ -67,7 +68,7 @@ export const steps: StoryStep[] = [
 	{
 		id: 'heat-3',
 		chapter: 'heat',
-		chart: { tempMode: 'feels_like' },
+		chart: { tempMode: 'feels_like', yDomain: [22, 49] }, // feels-like peaks at 46.6
 		focusEvent: 'hot-1988-07-17'
 	},
 
@@ -77,6 +78,7 @@ export const steps: StoryStep[] = [
 		chapter: 'cold',
 		chart: {
 			xDomain: WINTER,
+			yDomain: [-14, 18],
 			dotTail: 'cold',
 			tempMode: 'real',
 			focusedEventId: null
@@ -91,7 +93,7 @@ export const steps: StoryStep[] = [
 	{
 		id: 'cold-3',
 		chapter: 'cold',
-		chart: { tempMode: 'feels_like' },
+		chart: { tempMode: 'feels_like', yDomain: [-20, 16] }, // feels-like floor: −17.7
 		focusEvent: 'cold-1980-01-31'
 	},
 
@@ -165,6 +167,7 @@ export const steps: StoryStep[] = [
 		chart: {
 			chartType: 'climatology',
 			xDomain: FULL_YEAR,
+			yDomain: null, // back to auto full view
 			tempMode: 'real',
 			dotTail: 'both',
 			dotThreshold: 'p99',

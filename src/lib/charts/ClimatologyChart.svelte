@@ -103,8 +103,12 @@
 	);
 
 	// --- interaction -----------------------------------------------------------
+	// Featured (curated) dots: hover shows the full EventCard as a preview;
+	// clicking the dot or the preview pins it. Plain dots keep the tooltip.
 	let hovered = $state<{ dot: Dot; px: number; py: number } | null>(null);
+	let preview = $state<{ event: CuratedEvent; px: number; py: number } | null>(null);
 	let frameWidth = $state(0);
+	let hideTimer: ReturnType<typeof setTimeout> | null = null;
 
 	const focusedEvent = $derived(
 		$chartState.focusedEventId
@@ -113,10 +117,50 @@
 	);
 	let focusedPos = $state<{ px: number; py: number } | null>(null);
 
-	function handleSelect(dot: Dot, px: number, py: number) {
-		const iso = dateIntToIso(Number(dot.id.split('-')[1]));
-		const event = curatedByDate.get(iso);
+	function eventForDot(dot: Dot): CuratedEvent | undefined {
+		return curatedByDate.get(dateIntToIso(Number(dot.id.split('-')[1])));
+	}
+
+	function cancelHide() {
+		if (hideTimer) {
+			clearTimeout(hideTimer);
+			hideTimer = null;
+		}
+	}
+
+	function handleFocus(dot: Dot, px: number, py: number) {
+		cancelHide();
+		const event = eventForDot(dot);
 		if (event) {
+			preview = { event, px, py };
+			hovered = null;
+		} else {
+			hovered = { dot, px, py };
+			preview = null;
+		}
+	}
+
+	function handleBlur() {
+		hovered = null;
+		// grace period so the pointer can travel from dot into the card
+		cancelHide();
+		hideTimer = setTimeout(() => (preview = null), 200);
+	}
+
+	function pinPreview() {
+		if (!preview) return;
+		cancelHide();
+		focusedPos = { px: preview.px, py: preview.py };
+		const id = preview.event.id;
+		preview = null;
+		chartState.update((s) => ({ ...s, focusedEventId: id }));
+	}
+
+	function handleSelect(dot: Dot, px: number, py: number) {
+		const event = eventForDot(dot);
+		if (event) {
+			cancelHide();
+			preview = null;
 			focusedPos = { px, py };
 			chartState.update((s) => ({ ...s, focusedEventId: event.id }));
 		}
@@ -174,21 +218,33 @@
 				{x}
 				{y}
 				{dots}
-				onfocus={(dot, px, py) => (hovered = { dot, px, py })}
-				onblur={() => (hovered = null)}
+				onfocus={handleFocus}
+				onblur={handleBlur}
 				onselect={handleSelect}
 			/>
 		{/snippet}
 	</Chart>
 
-	{#if hovered && !focusedEvent}
+	{#if hovered && !focusedEvent && !preview}
 		<Tooltip px={hovered.px} py={hovered.py} {frameWidth}>
 			<strong>{hoveredIso ? formatDate(hoveredIso, i18n.lang) : ''}</strong><br />
 			{formatTemp(hovered.dot.y)}
-			{#if hovered.dot.featured}
-				<br /><em>{i18n.lang === 'zh' ? '点击查看故事' : 'click for the story'}</em>
-			{/if}
 		</Tooltip>
+	{/if}
+
+	{#if preview && !focusedEvent}
+		<!-- hover preview: keyboard users reach the same card via Enter on the dot -->
+		<!-- svelte-ignore a11y_no_static_element_interactions, a11y_click_events_have_key_events -->
+		<div
+			class="card-anchor"
+			style:left="{preview.px}px"
+			style:top="{preview.py}px"
+			onpointerenter={cancelHide}
+			onpointerleave={handleBlur}
+			onclick={pinPreview}
+		>
+			<EventCard event={preview.event} pinned={false} />
+		</div>
 	{/if}
 
 	{#if focusedEvent}

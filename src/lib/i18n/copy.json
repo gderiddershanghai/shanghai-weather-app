@@ -73,12 +73,12 @@
 
 	"steps.hook-1.title": { "en": "What a normal year feels like", "zh": "正常的一年是什么样" },
 	"steps.hook-1.body": {
-		"en": "Every day of the year has a 'normal' in Shanghai. The band stretches from the typical coldest nights (its bottom edge) up to the typical hottest afternoons (its top); the line traces the typical daily high. Muggy Augusts, damp Januaries — the city's rhythm.",
-		"zh": "在上海，一年中的每一天都有自己的“正常值”。色带从典型的最冷夜晚（下缘）一直延伸到典型的最热午后（上缘）；曲线描出典型的每日最高温。闷热的八月、湿冷的一月——这就是这座城市的节奏。"
+		"en": "Every day of the year has a 'normal' in Shanghai. The band stretches from the typical coldest nights (its bottom edge) up to the typical hottest afternoons (its top); the line traces the typical daily high. Muggy Augusts, damp Januaries — that's just what the year looks like here.",
+		"zh": "在上海，一年中的每一天都有自己的“正常值”。色带从典型的最冷夜晚（下缘）一直延伸到典型的最热午后（上缘）；曲线描出典型的每日最高温。闷热的八月、湿冷的一月——这里的一年本来就是这个样子。"
 	},
 	"steps.hook-2.title": { "en": "…and the days that broke it", "zh": "……以及打破常规的日子" },
 	"steps.hook-2.body": {
-		"en": "But some days blow straight past normal. Each dot is a day among the most extreme 1% for its date — red above, blue below. The ringed dots carry stories: tap one and see what the newspapers said.",
+		"en": "But some days blow straight past normal. Each dot is a day among the most extreme 1% for its date — red above, blue below. The ringed dots have a paper trail — tap one to see what the newspapers said.",
 		"zh": "但有些日子会直接冲破“正常”。每个圆点都是同期最极端的1%的一天——红色偏热，蓝色偏冷。带圆圈的点背后有故事：点一下，看看当时报纸怎么说。"
 	},
 
@@ -89,8 +89,8 @@
 	},
 	"steps.heat-2.title": { "en": "August 2024", "zh": "2024年8月" },
 	"steps.heat-2.body": {
-		"en": "August 3rd, 2024: 38.6°C in the shade, at the peak of a heatwave that pushed the city to its highest alert level. Days like this used to be generational; now they arrive in batches.",
-		"zh": "2024年8月3日：阴凉处38.6°C，正值一场令全市拉响最高级别高温预警的热浪顶峰。这样的日子曾经几十年一遇，如今却成批出现。"
+		"en": "August 3rd, 2024: 38.6°C in the shade, at the peak of a heatwave that pushed the city to its highest alert level. This kind of day used to happen once a generation. Now it happens several times a summer.",
+		"zh": "2024年8月3日：阴凉处38.6°C，正值一场令全市拉响最高级别高温预警的热浪顶峰。这样的日子曾经一代人才遇上一次，如今一个夏天就有好几天。"
 	},
 	"steps.heat-3.title": { "en": "What it actually felt like", "zh": "体感有多热" },
 	"steps.heat-3.body": {
@@ -100,13 +100,13 @@
 
 	"steps.cold-1.title": { "en": "The other tail: cold", "zh": "另一端：严寒" },
 	"steps.cold-1.body": {
-		"en": "Now deep winter, January through March. Shanghai cold is its own animal — humid, unheated indoors south of the Huai River line, seeping into everything.",
-		"zh": "现在看隆冬，1月至3月。上海的冷有它自己的性格——潮湿、地处集中供暖线以南的室内寒意，无孔不入。"
+		"en": "Now deep winter, January through March. Shanghai cold works differently — humid, unheated indoors south of the Huai River line, seeping into everything.",
+		"zh": "现在看隆冬，1月至3月。上海的冷是另一回事——潮湿、地处集中供暖线以南的室内寒意，无孔不入。"
 	},
 	"steps.cold-2.title": { "en": "The winter the pipes burst", "zh": "水管爆裂的那个冬天" },
 	"steps.cold-2.body": {
-		"en": "January 24th, 2016: −8.5°C, feels like −17.5°C. The city's pipes — never built for this — froze and burst across entire districts. Plumbers worked around the clock for a week. Everyone who lived here then remembers.",
-		"zh": "2016年1月24日：−8.5°C，体感−17.5°C。这座城市的水管从未为此设计——整片城区水管冻裂。水管工连续一周昼夜抢修。经历过的人都记得那个冬天。"
+		"en": "January 24th, 2016: −8.5°C, feels like −17.5°C. The city's pipes — never built for this — froze and burst across entire districts. Plumbers worked around the clock for a week. Running water, gone, in the dead of winter.",
+		"zh": "2016年1月24日：−8.5°C，体感−17.5°C。这座城市的水管从未为此设计——整片城区水管冻裂。水管工连续一周昼夜抢修。隆冬时节，自来水说停就停。"
 	},
 	"steps.cold-3.title": { "en": "But the deep cold is fading", "zh": "但极寒正在退场" },
 	"steps.cold-3.body": {
@@ -132,13 +132,13 @@
 
 	"steps.aqi-1.title": { "en": "The air, remembered", "zh": "记忆中的空气" },
 	"steps.aqi-1.body": {
-		"en": "If you lived here in the mid-2010s you remember checking the air before opening a window. The heatmap doesn't forget either: dark winters in 2014 and 2015, when the typical day's PM2.5 index sat at 116 on the US scale — 'unhealthy for sensitive groups', a level China's own standard files under a milder category. Same air, different color depending on whose app you checked. (All values here use the US index.)",
-		"zh": "如果你在2010年代中期住在这里，你一定记得开窗前先看空气质量。这张热力图也没有忘记：2014、2015年那些深色的冬天，PM2.5指数按美标通常在116——“对敏感人群不健康”，而按中国标准，同样的空气会被归入更温和的等级。同样的空气，不同的App显示不同的颜色。（本图数值均采用美标指数。）"
+		"en": "In the mid-2010s, opening a window here meant checking an app first. The heatmap doesn't forget either: dark winters in 2014 and 2015, when the typical day's PM2.5 index sat at 116 on the US scale — 'unhealthy for sensitive groups', a level China's own standard files under a milder category. Same air, different color depending on whose app you checked. (All values here use the US index.)",
+		"zh": "2010年代中期，在这里开窗前得先查一下App。这张热力图也没有忘记：2014、2015年那些深色的冬天，PM2.5指数按美标通常在116——“对敏感人群不健康”，而按中国标准，同样的空气会被归入更温和的等级。同样的空气，不同的App显示不同的颜色。（本图数值均采用美标指数。）"
 	},
 	"steps.aqi-scale.title": { "en": "Same air, different color", "zh": "同样的空气，不同的颜色" },
 	"steps.aqi-scale.body": {
-		"en": "An air quality index isn't a measurement — it's a translation. Each country slices the same PM2.5 concentrations into its own colored categories. Take a typical bad 2014 winter day, about 42 µg/m³: the US index calls it orange — 'unhealthy for sensitive groups'. China's standard calls the very same air 良 — 'good'. Neither is lying; they just draw the lines in different places.",
-		"zh": "空气质量指数并不是一种测量，而是一种翻译。各国把相同的PM2.5浓度切分成各自的彩色等级。以2014年一个典型的污染冬日为例，约42微克/立方米：美标指数把它标为橙色——“对敏感人群不健康”；而中国标准把同样的空气评为“良”。谁都没有说谎——只是划线的位置不同。"
+		"en": "An air quality index doesn't measure the air. It translates a measurement into a color — and each country slices the same PM2.5 concentrations into its own colored categories. Take a typical bad 2014 winter day, about 42 µg/m³: the US index calls it orange — 'unhealthy for sensitive groups'. China's standard calls the very same air 良 — 'good'. Neither is lying; they just draw the lines in different places.",
+		"zh": "空气质量指数并不测量空气，而是把测量结果翻译成颜色——各国把相同的PM2.5浓度切分成各自的彩色等级。以2014年一个典型的污染冬日为例，约42微克/立方米：美标指数把它标为橙色——“对敏感人群不健康”；而中国标准把同样的空气评为“良”。谁都没有说谎——只是划线的位置不同。"
 	},
 	"aqiScale.us": { "en": "US EPA", "zh": "美标 (US EPA)" },
 	"aqiScale.cn": { "en": "China GB 3095", "zh": "国标 (GB 3095)" },
@@ -158,13 +158,13 @@
 
 	"steps.interplay-1.title": { "en": "Heat and haze, together", "zh": "高温与雾霾的纠缠" },
 	"steps.interplay-1.body": {
-		"en": "One dot per day since 2014: temperature across, PM2.5 up, colored by season. The lines trace each season's typical air at each temperature. The pattern isn't one cloud — it's four different seasons behaving four different ways.",
-		"zh": "2014年以来的每一天都是一个点：横轴是气温，纵轴是PM2.5，颜色代表季节。曲线描出每个季节在不同气温下的典型空气。这不是一团乱点——是四个季节四种脾气。"
+		"en": "One dot per day since 2014: temperature across, PM2.5 up, colored by season. The lines trace each season's typical air at each temperature. Four seasons, four separate shapes — not one cloud of dots.",
+		"zh": "2014年以来的每一天都是一个点：横轴是气温，纵轴是PM2.5，颜色代表季节。曲线描出每个季节在不同气温下的典型空气。四个季节，四种形状——并不是一团乱点。"
 	},
 	"steps.interplay-2.title": { "en": "Winter is the smog season", "zh": "冬天才是雾霾季" },
 	"steps.interplay-2.body": {
-		"en": "Isolate winter and the story sharpens: the coldest days carry the dirtiest air, as northern heating smoke and still air settle over the delta. Shanghai's worst-air days and its coldest days travel together — a pairing summer never matches.",
-		"zh": "只看冬天，故事就清晰了：最冷的日子往往空气最脏——北方取暖的烟尘加上静稳天气沉积在长三角上空。上海空气最差的日子和最冷的日子结伴而行——夏天从来没有这种组合。"
+		"en": "Isolate winter, and the pattern is stark: the coldest days carry the dirtiest air, as northern heating smoke and still air settle over the delta. Shanghai's worst-air days and its coldest days travel together — a pairing summer never matches.",
+		"zh": "只看冬天，规律格外分明：最冷的日子往往空气最脏——北方取暖的烟尘加上静稳天气沉积在长三角上空。上海空气最差的日子和最冷的日子结伴而行——夏天从来没有这种组合。"
 	},
 
 	"steps.wrap-1.title": { "en": "Zoom back out", "zh": "拉远视角" },
@@ -178,5 +178,9 @@
 		"zh": "常态区间：最冷夜晚 → 最热午后"
 	},
 	"chart.key.median": { "en": "typical daily high", "zh": "典型日最高温" },
-	"chart.key.dots": { "en": "top-1% extreme days", "zh": "最极端1%的日子" }
+	"chart.key.dots": { "en": "top-1% extreme days", "zh": "最极端1%的日子" },
+
+	"event.readMore": { "en": "Read more", "zh": "阅读更多" },
+	"event.close": { "en": "Close", "zh": "关闭" },
+	"event.pinHint": { "en": "click to pin", "zh": "点击固定" }
 }

@@ -24,10 +24,21 @@
 
 	const i18n = getI18n();
 
-	// Okabe–Ito, one hue per season: DJF blue, MAM green, JJA vermillion, SON amber
-	const SEASON_COLORS = ['#0072B2', '#009E73', '#D55E00', '#E69F00'];
+	// Okabe–Ito, one hue per season (tokens in app.css): DJF blue, MAM green,
+	// JJA vermillion, SON amber
+	const SEASON_COLORS = [
+		'var(--season-djf)',
+		'var(--season-mam)',
+		'var(--season-jja)',
+		'var(--season-son)'
+	];
 	// darkened variants for TEXT so labels meet contrast on the paper bg
-	const SEASON_TEXT = ['#005a8c', '#00694f', '#a34500', '#8a5f00'];
+	const SEASON_TEXT = [
+		'var(--season-djf-text)',
+		'var(--season-mam-text)',
+		'var(--season-jja-text)',
+		'var(--season-son-text)'
+	];
 	const SEASON_KEYS = ['seasons.djf', 'seasons.mam', 'seasons.jja', 'seasons.son'];
 
 	const IDX = $derived({

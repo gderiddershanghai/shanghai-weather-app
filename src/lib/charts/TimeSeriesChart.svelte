@@ -29,6 +29,22 @@
 		wmean: 'km/h'
 	};
 
+	// trend stroke follows the metric's color family — hot red means "heat"
+	// everywhere on the site, so a rain trend must never borrow it
+	const METRIC_STROKE: Record<string, string> = {
+		tmax: 'var(--color-hot)',
+		tmin: 'var(--color-hot)',
+		tmean: 'var(--color-hot)',
+		atmax: 'var(--color-hot)',
+		atmin: 'var(--color-hot)',
+		prcp: 'var(--chapter-rain)',
+		sun_h: 'var(--color-median)',
+		wmax: 'var(--color-wind)',
+		gmax: 'var(--color-wind)',
+		wmean: 'var(--color-wind)',
+		pm25: 'var(--chapter-aqi)'
+	};
+
 	const colIndex = $derived(
 		$chartState.metric in COL ? COL[$chartState.metric as keyof typeof COL] : COL.tmax
 	);
@@ -73,7 +89,13 @@
 					strokeWidth={0.5}
 					opacity={0.35}
 				/>
-				<LinePath {x} {y} data={smoothed} stroke="var(--color-hot)" strokeWidth={2.5} />
+				<LinePath
+					{x}
+					{y}
+					data={smoothed}
+					stroke={METRIC_STROKE[$chartState.metric] ?? 'var(--color-ink)'}
+					strokeWidth={2.5}
+				/>
 			{:else}
 				<LinePath {x} {y} data={raw} stroke="var(--color-ink)" strokeWidth={0.8} opacity={0.8} />
 			{/if}

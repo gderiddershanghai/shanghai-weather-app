@@ -1,9 +1,12 @@
 <script lang="ts">
 	// Year × month heatmap over monthly.json rollups. Sequential single-hue
-	// scales (per-metric: red family reserved for heat, blue for rain, purple
-	// for haze). Cells with sparse coverage are hidden — a lone partial month
-	// must not masquerade as a trend. Gradient legend + units included.
-	import { interpolateBlues, interpolatePurples, interpolateYlOrRd, scaleSequential } from 'd3';
+	// ramps from src/lib/colors.ts — all floor at the band beige (visibly "on
+	// the paper", so the lowest value never looks like a coverage-hidden blank
+	// cell) and end in the metric family's own hue: heat red, rain teal, wind
+	// slate, haze purple. Sparse-coverage cells are hidden — a lone partial
+	// month must not masquerade as a trend. Gradient legend + units included.
+	import { scaleSequential } from 'd3';
+	import { rampHaze, rampHeat, rampRain, rampWind } from '$lib/colors';
 	import { chartState } from '$lib/stores/chartState';
 	import { getI18n } from '$lib/i18n';
 	import { monthLabel } from '$lib/utils/format';
@@ -19,11 +22,11 @@
 		string,
 		{ column: string; unit: string; ramp: (t: number) => string }
 	> = {
-		tmax: { column: 'tmax_mean', unit: '°C', ramp: interpolateYlOrRd },
-		tmin: { column: 'tmin_mean', unit: '°C', ramp: interpolateYlOrRd },
-		prcp: { column: 'prcp_sum', unit: 'mm', ramp: interpolateBlues },
-		gmax: { column: 'gust_max', unit: 'km/h', ramp: interpolateBlues },
-		pm25: { column: 'pm25_median', unit: ' US AQI', ramp: interpolatePurples }
+		tmax: { column: 'tmax_mean', unit: '°C', ramp: rampHeat },
+		tmin: { column: 'tmin_mean', unit: '°C', ramp: rampHeat },
+		prcp: { column: 'prcp_sum', unit: 'mm', ramp: rampRain },
+		gmax: { column: 'gust_max', unit: 'km/h', ramp: rampWind },
+		pm25: { column: 'pm25_median', unit: ' US AQI', ramp: rampHaze }
 	};
 
 	const config = $derived(METRIC_CONFIG[$chartState.metric] ?? METRIC_CONFIG.tmax);

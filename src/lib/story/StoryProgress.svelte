@@ -88,14 +88,15 @@
 		cursor: pointer;
 		padding: 0;
 		min-width: 8px;
-		/* upcoming: pale tint of the chapter color */
-		background: color-mix(in srgb, var(--dash-color, var(--color-border)) 22%, var(--color-paper));
+		/* upcoming: pale tint of the chapter color (35% keeps the track visible) */
+		background: color-mix(in srgb, var(--dash-color, var(--color-border)) 35%, var(--color-paper));
 		transition: height 150ms ease;
 	}
 	.dash.done {
+		/* 80% mix: ≥3:1 on paper for every chapter (WCAG non-text UI minimum) */
 		background: color-mix(
 			in srgb,
-			var(--dash-color, var(--color-ink-muted)) 65%,
+			var(--dash-color, var(--color-ink-muted)) 80%,
 			var(--color-paper)
 		);
 	}

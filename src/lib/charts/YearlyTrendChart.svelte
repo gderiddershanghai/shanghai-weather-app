@@ -54,7 +54,7 @@
 			color: 'var(--chapter-rain)',
 			rank: 'top'
 		},
-		gust: { yCol: 'gust_max', unit: ' km/h', color: 'var(--chapter-rain)', rank: 'top' },
+		gust: { yCol: 'gust_max', unit: ' km/h', color: 'var(--color-wind)', rank: 'top' },
 		pm25: { yCol: 'pm25_median', unit: '', color: 'var(--chapter-aqi)', rank: 'top' }
 	};
 

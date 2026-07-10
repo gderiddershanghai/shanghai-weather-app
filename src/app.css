@@ -8,18 +8,40 @@
 
 	/* Data colors (hero chart) */
 	--color-hot: #c43d4b; /* record/outlier hot dots */
-	--color-cold: #3d7dc4; /* record/outlier cold dots */
-	--color-band: #f3e8d2; /* p05–p95 "normal range" band (xkcd beige) */
+	--color-cold: #326fae; /* record/outlier cold dots; dark enough for small text (AA) */
+	--color-band: #f3e8d2; /* p05–p95 "normal range" band (xkcd beige); floor of all heatmap ramps */
 	--color-median: #8a7a5c; /* p50 line */
+	--color-wind: #4a5568; /* wind/gust marks — slate, so wind never borrows rain's hue */
 
-	/* Chapter accents (progress bar, annotations) — one hue per story chapter */
-	--chapter-hook: #6b7280;
-	--chapter-heat: #c43d4b;
-	--chapter-cold: #3d7dc4;
-	--chapter-rain: #2a9d8f;
+	/* Chapter accents (progress bar, annotations) — one hue per story chapter.
+	   Heat/cold/hook/explore alias their data colors on purpose: chapter = data family. */
+	--chapter-hook: var(--color-ink-muted);
+	--chapter-heat: var(--color-hot);
+	--chapter-cold: var(--color-cold);
+	--chapter-rain: #1f7d72;
 	--chapter-aqi: #7b5aa6;
-	--chapter-interplay: #b45309;
-	--chapter-explore: #1f2430;
+	--chapter-interplay: #9c4a70; /* plum — kept off the orange axis, which belongs to seasons/AQI */
+	--chapter-explore: var(--color-ink);
+
+	/* AQI category ladder — the conventional green→maroon readers know from every
+	   AQI app, lightness-tuned for label contrast. Deliberately near --color-hot at
+	   cat-4; the two never share a frame. NEVER the sole encoding in a chart. */
+	--aqi-cat-1: #69b56e;
+	--aqi-cat-2: #e2c34c;
+	--aqi-cat-3: #dd7428;
+	--aqi-cat-4: #c23b3b;
+	--aqi-cat-5: #8f3f97;
+	--aqi-cat-6: #7e0023;
+
+	/* Seasons (Okabe–Ito, CVD-safe) — vivid for marks, dark variants for text */
+	--season-djf: #0072b2;
+	--season-mam: #009e73;
+	--season-jja: #d55e00;
+	--season-son: #e69f00;
+	--season-djf-text: #005a8c;
+	--season-mam-text: #00694f;
+	--season-jja-text: #a34500;
+	--season-son-text: #8a5f00;
 
 	/* Type: humanist stack with Chinese fallbacks */
 	--font-body:

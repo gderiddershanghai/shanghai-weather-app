@@ -8,9 +8,16 @@
 
 	const i18n = getI18n();
 
-	// Standard AQI category colors (toned for the paper background) — the SAME
-	// colors in both rows; only the breakpoints differ. That's the whole point.
-	const CATEGORY_COLORS = ['#6fbf73', '#e6c84a', '#e8853d', '#d64545', '#8f3f97', '#7e0023'];
+	// Standard AQI category colors (tokens in app.css) — the SAME colors in
+	// both rows; only the breakpoints differ. That's the whole point.
+	const CATEGORY_COLORS = [
+		'var(--aqi-cat-1)',
+		'var(--aqi-cat-2)',
+		'var(--aqi-cat-3)',
+		'var(--aqi-cat-4)',
+		'var(--aqi-cat-5)',
+		'var(--aqi-cat-6)'
+	];
 
 	// PM2.5 24h breakpoints (µg/m³). US: pre-2024 EPA values — these are what
 	// aqicn's historical index conversions used. CN: GB 3095 / HJ 633.

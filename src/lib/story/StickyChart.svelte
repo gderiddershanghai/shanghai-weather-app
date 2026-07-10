@@ -67,7 +67,9 @@
 		<p class="provenance">
 			{#if usesAqi}
 				{i18n.t('footer.dataThrough')}
-				{formatDate(meta.aqi?.end ?? meta.weather.end, i18n.lang)} · aqicn.org (US AQI) · n={(meta.aqi?.rows ?? 0).toLocaleString()}
+				{formatDate(meta.aqi?.end ?? meta.weather.end, i18n.lang)} · aqicn.org (US AQI) · n={(
+					meta.aqi?.rows ?? 0
+				).toLocaleString()}
 			{:else}
 				{i18n.t('footer.dataThrough')}
 				{formatDate(meta.weather.end, i18n.lang)} · Open-Meteo (ERA5) · n={meta.weather.rows.toLocaleString()}

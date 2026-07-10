@@ -11,7 +11,12 @@
 </script>
 
 <nav class="progress" aria-label={i18n.t('story.progressLabel')}>
-	<button class="arrow" onclick={prev} disabled={$activeStepIndex === 0} aria-label={i18n.t('story.nav.prev')}>
+	<button
+		class="arrow"
+		onclick={prev}
+		disabled={$activeStepIndex === 0}
+		aria-label={i18n.t('story.nav.prev')}
+	>
 		‹
 	</button>
 
@@ -88,7 +93,11 @@
 		transition: height 150ms ease;
 	}
 	.dash.done {
-		background: color-mix(in srgb, var(--dash-color, var(--color-ink-muted)) 65%, var(--color-paper));
+		background: color-mix(
+			in srgb,
+			var(--dash-color, var(--color-ink-muted)) 65%,
+			var(--color-paper)
+		);
 	}
 	.dash.current {
 		background: var(--dash-color, var(--color-ink));

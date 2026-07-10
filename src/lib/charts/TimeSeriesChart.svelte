@@ -17,8 +17,16 @@
 	const i18n = getI18n();
 
 	const METRIC_UNITS: Record<string, string> = {
-		tmax: '°C', tmin: '°C', tmean: '°C', atmax: '°C', atmin: '°C',
-		prcp: 'mm', sun_h: 'h', wmax: 'km/h', gmax: 'km/h', wmean: 'km/h'
+		tmax: '°C',
+		tmin: '°C',
+		tmean: '°C',
+		atmax: '°C',
+		atmin: '°C',
+		prcp: 'mm',
+		sun_h: 'h',
+		wmax: 'km/h',
+		gmax: 'km/h',
+		wmean: 'km/h'
 	};
 
 	const colIndex = $derived(
@@ -57,7 +65,14 @@
 			<AxisX {x} {y} ticks={yearTicks} baseline />
 
 			{#if $chartState.rollingWindow > 1}
-				<LinePath {x} {y} data={raw} stroke="var(--color-ink-muted)" strokeWidth={0.5} opacity={0.35} />
+				<LinePath
+					{x}
+					{y}
+					data={raw}
+					stroke="var(--color-ink-muted)"
+					strokeWidth={0.5}
+					opacity={0.35}
+				/>
 				<LinePath {x} {y} data={smoothed} stroke="var(--color-hot)" strokeWidth={2.5} />
 			{:else}
 				<LinePath {x} {y} data={raw} stroke="var(--color-ink)" strokeWidth={0.8} opacity={0.8} />

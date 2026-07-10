@@ -25,7 +25,7 @@ Two layers with a hard boundary:
 1. **`pipeline/` (Python, build time)** — owns ALL statistics. `build_derived.py` orchestrates: `temperature.py` (DOY climatology p01–p99 with circular smoothing, anomaly-ranked outliers, heat/cold waves), `precip_wind.py`, `aqi.py`, `events_curated.py` → compact JSON in `static/data/derived/`. Derived JSON is regenerated in CI and **not committed** (except `event-images/`).
 2. **`src/` (SvelteKit, Svelte 5 runes)** — renders SVG charts with D3 as a math library only (no d3-selection). Client JS may filter/group the shipped tables but never re-derives statistics.
 
-**One store, two drivers.** `src/lib/stores/chartState.ts` holds all chart config. Story mode (`src/lib/story/steps.ts` — steps are *partial presets* applied on scroll via `Scrolly.svelte`) and Explore mode (`src/lib/explore/ControlPanel.svelte`) both write it; chart components in `src/lib/charts/` only read it (plus `stores/tweens.ts` for animated domains). Never duplicate chart logic per mode — that's the cardinal rule.
+**One store, two drivers.** `src/lib/stores/chartState.ts` holds all chart config. Story mode (`src/lib/story/steps.ts` — steps are _partial presets_ applied on scroll via `Scrolly.svelte`) and Explore mode (`src/lib/explore/ControlPanel.svelte`) both write it; chart components in `src/lib/charts/` only read it (plus `stores/tweens.ts` for animated domains). Never duplicate chart logic per mode — that's the cardinal rule.
 
 **i18n:** prerendered `/en/` + `/zh/` via `[lang=lang]` routes; copy is side-by-side `{en, zh}` in `src/lib/i18n/copy.json`; `hooks.server.ts` stamps `<html lang>` at prerender.
 

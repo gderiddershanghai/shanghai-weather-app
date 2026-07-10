@@ -36,8 +36,7 @@
 		const onWheel = (e: WheelEvent) => {
 			if (Math.abs(e.deltaY) < 24) return; // ignore trackpad jitter
 			const i = get(activeStepIndex);
-			const releasing =
-				(e.deltaY > 0 && i === steps.length - 1) || (e.deltaY < 0 && i === 0);
+			const releasing = (e.deltaY > 0 && i === steps.length - 1) || (e.deltaY < 0 && i === 0);
 			if (releasing) return; // hand back to page scroll at the ends
 			e.preventDefault();
 			const now = Date.now();
@@ -103,8 +102,10 @@
 		{@render graphic()}
 
 		<!-- edge tap zones (outer ~15%); center stays free for chart tooltips -->
-		<button class="tap left" onclick={prev} aria-label={i18n.t('story.nav.prev')} tabindex="-1"></button>
-		<button class="tap right" onclick={next} aria-label={i18n.t('story.nav.next')} tabindex="-1"></button>
+		<button class="tap left" onclick={prev} aria-label={i18n.t('story.nav.prev')} tabindex="-1"
+		></button>
+		<button class="tap right" onclick={next} aria-label={i18n.t('story.nav.next')} tabindex="-1"
+		></button>
 	</div>
 
 	<aside class="deck-copy">

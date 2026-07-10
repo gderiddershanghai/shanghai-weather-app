@@ -12,7 +12,7 @@ Prioritize clarity, simple explainable methods, and shareable visuals. No backen
 
 **Layer 2 — SvelteKit renders (client).** Svelte 5 + D3-as-math-only (scales/shape/array — never d3-selection), SVG charts, adapter-static. JS may filter/group/count the compact tables; it must never re-derive statistics.
 
-**The one chart system.** `src/lib/stores/chartState.ts` is the single source of truth. Story mode scroll-steps (`src/lib/story/steps.ts`) apply *partial presets* to it; Explore mode controls bind to the same store; charts only read it. Never fork chart logic per mode.
+**The one chart system.** `src/lib/stores/chartState.ts` is the single source of truth. Story mode scroll-steps (`src/lib/story/steps.ts`) apply _partial presets_ to it; Explore mode controls bind to the same store; charts only read it. Never fork chart logic per mode.
 
 ## Data contracts
 
@@ -28,7 +28,7 @@ Prioritize clarity, simple explainable methods, and shareable visuals. No backen
 ## Sharp edges
 
 - **Base path:** deployed under `/shanghai-weather-app`. `paths.relative` is on, so `base` from `$app/paths` can be `'..'`-relative during SSR — never slice/concat it against pathnames (the language toggle broke this way once). Runtime fetches use `${base}/data/derived/…`.
-- **i18n:** copy lives side-by-side (`{"key": {en, zh}}`) in `src/lib/i18n/copy.json`; `hooks.server.ts` stamps `<html lang>` at prerender; routes are `/en/…` + `/zh/…` via the `[lang=lang]` matcher; root `/` JS-redirects with *relative* URLs.
+- **i18n:** copy lives side-by-side (`{"key": {en, zh}}`) in `src/lib/i18n/copy.json`; `hooks.server.ts` stamps `<html lang>` at prerender; routes are `/en/…` + `/zh/…` via the `[lang=lang]` matcher; root `/` JS-redirects with _relative_ URLs.
 - **Dates:** format manually (`src/lib/utils/format.ts`) — no `Intl` (WeChat webview quirks). `events.csv` is dd/mm/yyyy; compact tables use yyyymmdd ints.
 - **Motion:** all animation goes through the Svelte 5 `Tween` class wired in `stores/tweens.ts`, which zeroes durations under `prefers-reduced-motion`.
 - Do not modify or rely on `Nbs/*.ipynb` (exploratory only) or `shanghai_weather/` (raw source archive).

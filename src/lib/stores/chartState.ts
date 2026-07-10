@@ -5,7 +5,10 @@
 import { writable } from 'svelte/store';
 import type { DailyMetric } from '$lib/data/daily';
 
-export type ChartType = 'climatology' | 'timeseries' | 'heatmap' | 'scatter' | 'aqiScale';
+export type ChartType =
+	'climatology' | 'timeseries' | 'heatmap' | 'scatter' | 'aqiScale' | 'yearly';
+/** yearly-trend views: warming stripes or one ranked metric per year */
+export type TrendMetric = 'stripes' | 'summer' | 'winter' | 'hotDays' | 'prcp' | 'gust' | 'pm25';
 export type TempMode = 'real' | 'feels_like';
 export type DotThreshold = 'p99' | 'p95' | 'none';
 export type DotTail = 'hot' | 'cold' | 'both';
@@ -33,6 +36,7 @@ export interface ChartState {
 	rollingWindow: 1 | 30 | 365;
 	scatterX: 'tmax' | 'tmin';
 	scatterY: 'pm25' | 'o3';
+	trendMetric: TrendMetric;
 	seasonFilter: Season | null;
 	activeAnnotations: string[];
 	/** curated event id whose EventCard is open */
@@ -55,6 +59,7 @@ export const CHART_DEFAULTS: ChartState = {
 	rollingWindow: 1,
 	scatterX: 'tmax',
 	scatterY: 'pm25',
+	trendMetric: 'stripes',
 	seasonFilter: null,
 	activeAnnotations: [],
 	focusedEventId: null

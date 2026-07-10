@@ -15,7 +15,10 @@
 	const i18n = getI18n();
 
 	// metric -> monthly column, unit, color ramp
-	const METRIC_CONFIG: Record<string, { column: string; unit: string; ramp: (t: number) => string }> = {
+	const METRIC_CONFIG: Record<
+		string,
+		{ column: string; unit: string; ramp: (t: number) => string }
+	> = {
 		tmax: { column: 'tmax_mean', unit: '°C', ramp: interpolateYlOrRd },
 		tmin: { column: 'tmin_mean', unit: '°C', ramp: interpolateYlOrRd },
 		prcp: { column: 'prcp_sum', unit: 'mm', ramp: interpolateBlues },
@@ -89,7 +92,13 @@
 			{/if}
 		{/each}
 		{#each Array(12) as _, m (m)}
-			<text x={LABEL_W - 6} y={LABEL_H + m * (CELL + GAP) + CELL / 2} dy="0.32em" text-anchor="end" class="label">
+			<text
+				x={LABEL_W - 6}
+				y={LABEL_H + m * (CELL + GAP) + CELL / 2}
+				dy="0.32em"
+				text-anchor="end"
+				class="label"
+			>
 				{monthLabel(m, i18n.lang)}
 			</text>
 		{/each}

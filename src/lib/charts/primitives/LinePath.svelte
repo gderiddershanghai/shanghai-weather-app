@@ -29,11 +29,7 @@
 		.defined((p) => p.y != null)
 		.curve(curveMonotoneX);
 
-	const d = $derived(
-		gen
-			.x((p) => x(p.x))
-			.y((p) => y(p.y!))(data) ?? ''
-	);
+	const d = $derived(gen.x((p) => x(p.x)).y((p) => y(p.y!))(data) ?? '');
 </script>
 
 <path

@@ -51,8 +51,7 @@
 			}))
 			.filter(
 				(p) =>
-					p.y != null &&
-					($chartState.seasonFilter == null || p.season === $chartState.seasonFilter)
+					p.y != null && ($chartState.seasonFilter == null || p.season === $chartState.seasonFilter)
 			)
 	);
 

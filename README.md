@@ -2,7 +2,7 @@
 
 **Live: <https://gderiddershanghai.github.io/shanghai-weather-app/>**
 
-A bilingual (English/中文) scrollytelling data essay that tests what people say about Shanghai's climate — *summers are hotter, the deep cold is disappearing, the rain is wilder, the air is cleaner* — against 45+ years of daily weather data and 12 years of air-quality measurements.
+A bilingual (English/中文) scrollytelling data essay that tests what people say about Shanghai's climate — _summers are hotter, the deep cold is disappearing, the rain is wilder, the air is cleaner_ — against 45+ years of daily weather data and 12 years of air-quality measurements.
 
 - **Story mode** walks through seven chapters: the shape of a normal year, record heat, the vanishing cold (including the 2016 frozen-pipes winter), the plum rains and typhoons, the air-quality turnaround, and how temperature and smog travel together.
 - **Explore mode** hands you the same charts with filters: climatology, time series, monthly heatmaps, and the temperature×PM2.5 scatter.
@@ -10,11 +10,11 @@ A bilingual (English/中文) scrollytelling data essay that tests what people sa
 
 ## Data
 
-| Source | Coverage | What |
-|---|---|---|
+| Source                                       | Coverage       | What                                                         |
+| -------------------------------------------- | -------------- | ------------------------------------------------------------ |
 | [Open-Meteo](https://open-meteo.com/) (ERA5) | 1980 → today−6 | daily temperature, feels-like, precipitation, wind, sunshine |
-| [aqicn.org](https://aqicn.org/) | 2013 → present | daily PM2.5/PM10/O₃/NO₂/SO₂/CO |
-| `data/events.csv` | 1980 → present | hand-curated extreme events with EN/ZH news citations |
+| [aqicn.org](https://aqicn.org/)              | 2013 → present | daily PM2.5/PM10/O₃/NO₂/SO₂/CO                               |
+| `data/events.csv`                            | 1980 → present | hand-curated extreme events with EN/ZH news citations        |
 
 Data refreshes itself daily via a GitHub Actions cron; statistics are computed at build time by the Python pipeline in `pipeline/` and shipped as static JSON — the site has no backend.
 

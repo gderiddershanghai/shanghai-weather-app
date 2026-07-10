@@ -39,13 +39,7 @@
 		{@const px = x(dot.x)}
 		{@const py = y(dot.y)}
 		{@const radius = dot.featured ? featuredR : r}
-		<circle
-			cx={px}
-			cy={py}
-			r={radius}
-			class="dot {dot.kind}"
-			class:featured={dot.featured}
-		/>
+		<circle cx={px} cy={py} r={radius} class="dot {dot.kind}" class:featured={dot.featured} />
 		<!-- oversized invisible hit target; keyboard-focusable when featured -->
 		<circle
 			cx={px}

@@ -18,6 +18,7 @@ from .emit import date_to_int, df_to_compact, series_round, write_json
 from .events_curated import load_curated_events
 from .precip_wind import PrecipConfig, compute_precip_tables
 from .temperature import TempConfig, compute_temperature_tables
+from .yearly import YearlyConfig, compute_yearly
 
 # Smoothed climatology series exposed to the frontend (renamed without the _sm15 suffix).
 CLIM_SERIES = [
@@ -260,6 +261,23 @@ def main(argv: list[str] | None = None) -> int:
     sizes["temp-aqi.json"] = write_json(DERIVED_DIR / "temp-aqi.json", temp_aqi_payload)
 
     sizes["monthly.json"] = write_json(DERIVED_DIR / "monthly.json", emit_monthly(df_daily, aqi))
+
+    print("computing yearly trends…", flush=True)
+    ycfg = YearlyConfig()
+    yearly = compute_yearly(df_daily, aqi, ycfg)
+    assert len(yearly) >= 45, f"expected 45+ years, got {len(yearly)}"
+    assert yearly["anom"].notna().sum() >= 40, "warming-stripe anomalies mostly null"
+    yearly_payload = df_to_compact(
+        yearly,
+        [
+            "year", "days", "tmean", "tmean_sm", "anom",
+            "summer_tmax", "summer_tmax_sm", "winter_tmin", "winter_tmin_sm",
+            "days_ge_35", "days_le_0", "prcp", "prcp_sm", "gust_max",
+            "pm25_median", "pm25_days",
+        ],
+    )
+    yearly_payload["baseline"] = list(ycfg.baseline_years)
+    sizes["yearly.json"] = write_json(DERIVED_DIR / "yearly.json", yearly_payload)
 
     print("loading curated events…", flush=True)
     curated = load_curated_events()

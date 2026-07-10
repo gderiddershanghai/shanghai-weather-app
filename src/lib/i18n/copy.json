@@ -41,6 +41,7 @@
 	"explore.title": { "en": "Explore the data", "zh": "探索数据" },
 	"explore.chartType": { "en": "View", "zh": "视图" },
 	"explore.chartType.climatology": { "en": "Year shape", "zh": "年度形态" },
+	"explore.chartType.yearly": { "en": "Trends", "zh": "长期趋势" },
 	"explore.chartType.timeseries": { "en": "Time series", "zh": "时间序列" },
 	"explore.chartType.heatmap": { "en": "Heatmap", "zh": "热力图" },
 	"explore.chartType.scatter": { "en": "Temp × Air", "zh": "温度×空气" },
@@ -182,5 +183,42 @@
 
 	"event.readMore": { "en": "Read more", "zh": "阅读更多" },
 	"event.close": { "en": "Close", "zh": "关闭" },
-	"event.pinHint": { "en": "click to pin", "zh": "点击固定" }
+	"event.pinHint": { "en": "click to pin", "zh": "点击固定" },
+
+	"trend.stripes": { "en": "Warming stripes", "zh": "变暖条纹" },
+	"trend.summer": { "en": "Summer highs", "zh": "夏季高温" },
+	"trend.winter": { "en": "Winter lows", "zh": "冬季低温" },
+	"trend.hotDays": { "en": "35°C+ days", "zh": "35°C以上天数" },
+	"trend.prcp": { "en": "Yearly rain", "zh": "年降水量" },
+	"trend.gust": { "en": "Peak gust", "zh": "最大阵风" },
+	"trend.pm25": { "en": "PM2.5", "zh": "PM2.5" },
+	"trend.smoothedKey": { "en": "10-yr average", "zh": "10年平均" },
+	"trend.caption.stripes": {
+		"en": "One stripe per year, colored by its mean temperature vs the 1980–2009 average. Blue = cooler, red = warmer.",
+		"zh": "每条竖纹代表一年，颜色表示其平均气温与1980–2009年均值的差。蓝色偏冷，红色偏热。"
+	},
+	"trend.caption.summer": {
+		"en": "Mean daily high, June–August. Labels mark the five hottest summers on record.",
+		"zh": "6–8月的日最高温平均值。标注的是有记录以来最热的五个夏天。"
+	},
+	"trend.caption.winter": {
+		"en": "Mean daily low, December–February (winter belongs to its January). Labels mark the five coldest winters.",
+		"zh": "12月至次年2月的日最低温平均值（冬季按其1月所在年份计）。标注的是最冷的五个冬天。"
+	},
+	"trend.caption.hotDays": {
+		"en": "Days per year reaching 35°C — the official high-temperature warning threshold. The five biggest years are labeled.",
+		"zh": "每年达到35°C（高温预警线）的天数。标注的是天数最多的五年。"
+	},
+	"trend.caption.prcp": {
+		"en": "Total precipitation per year. Labels mark the five wettest years.",
+		"zh": "每年的总降水量。标注的是最湿的五年。"
+	},
+	"trend.caption.gust": {
+		"en": "Strongest wind gust recorded each year — the tall ones are typhoons. Labels mark the five windiest years.",
+		"zh": "每年记录到的最强阵风——高点多为台风。标注的是风最大的五年。"
+	},
+	"trend.caption.pm25": {
+		"en": "Median daily PM2.5 index (US scale) per year, since records began in 2014. Labels mark the worst years.",
+		"zh": "每年PM2.5指数中位数（美标），自2014年有记录起。标注的是空气最差的几年。"
+	}
 }

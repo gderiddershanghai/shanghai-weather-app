@@ -3,8 +3,18 @@
 import type { Lang } from '$lib/i18n';
 
 const MONTHS_EN = [
-	'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-	'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+	'Jan',
+	'Feb',
+	'Mar',
+	'Apr',
+	'May',
+	'Jun',
+	'Jul',
+	'Aug',
+	'Sep',
+	'Oct',
+	'Nov',
+	'Dec'
 ];
 
 /** '2016-01-24' -> 'Jan 24, 2016' / '2016年1月24日' */

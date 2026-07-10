@@ -51,7 +51,12 @@
 	}
 
 	const rows = $derived([
-		{ label: i18n.t('aqiScale.us'), bands: bands(US_BREAKS), labels: US_LABELS[i18n.lang], y: M.top },
+		{
+			label: i18n.t('aqiScale.us'),
+			bands: bands(US_BREAKS),
+			labels: US_LABELS[i18n.lang],
+			y: M.top
+		},
 		{
 			label: i18n.t('aqiScale.cn'),
 			bands: bands(CN_BREAKS),
@@ -66,7 +71,13 @@
 
 <figure class="aqi-scale" bind:clientWidth={width}>
 	{#if width > 0}
-		<svg {width} height={HEIGHT} viewBox="0 0 {width} {HEIGHT}" role="img" aria-label={i18n.t('aqiScale.axis')}>
+		<svg
+			{width}
+			height={HEIGHT}
+			viewBox="0 0 {width} {HEIGHT}"
+			role="img"
+			aria-label={i18n.t('aqiScale.axis')}
+		>
 			{#each rows as row (row.label)}
 				<text x={M.left - 8} y={row.y + ROW_H / 2} dy="0.32em" text-anchor="end" class="row-label">
 					{row.label}
@@ -76,7 +87,14 @@
 					{@const bw = x(band.x1) - x(band.x0)}
 					<rect x={bx} y={row.y} width={bw} height={ROW_H} fill={band.color} />
 					{#if bw > 58}
-						<text x={bx + bw / 2} y={row.y + ROW_H / 2} dy="0.32em" text-anchor="middle" class="band-label" class:on-dark={band.idx >= 3}>
+						<text
+							x={bx + bw / 2}
+							y={row.y + ROW_H / 2}
+							dy="0.32em"
+							text-anchor="middle"
+							class="band-label"
+							class:on-dark={band.idx >= 3}
+						>
 							{row.labels[band.idx]}
 						</text>
 					{/if}

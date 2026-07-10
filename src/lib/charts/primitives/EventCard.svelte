@@ -26,9 +26,13 @@
 	// one primary "Read more" in the reader's language; the other language
 	// (when available) gets a small secondary chip so nothing is lost
 	const otherLang = $derived(i18n.lang === 'zh' ? 'en' : 'zh');
-	const primary = $derived(event.links[i18n.lang]?.url ? event.links[i18n.lang] : event.links[otherLang]);
+	const primary = $derived(
+		event.links[i18n.lang]?.url ? event.links[i18n.lang] : event.links[otherLang]
+	);
 	const secondary = $derived(
-		primary === event.links[i18n.lang] && event.links[otherLang]?.url ? event.links[otherLang] : null
+		primary === event.links[i18n.lang] && event.links[otherLang]?.url
+			? event.links[otherLang]
+			: null
 	);
 	const spansDays = $derived(event.days > 1);
 
@@ -85,7 +89,13 @@
 					<span aria-hidden="true">→</span>
 				</a>
 				{#if secondary?.url}
-					<a class="alt-lang" href={secondary.url} target="_blank" rel="noopener noreferrer" lang={otherLang}>
+					<a
+						class="alt-lang"
+						href={secondary.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						lang={otherLang}
+					>
 						{otherLang === 'zh' ? '中文' : 'EN'}
 					</a>
 				{/if}
@@ -149,10 +159,19 @@
 		opacity: 0.85;
 		font-variant-numeric: tabular-nums;
 	}
-	.media.cat-hot { background: var(--chapter-heat); }
-	.media.cat-cold { background: var(--chapter-cold); }
-	.media.cat-rain, .media.cat-typhoon { background: var(--chapter-rain); }
-	.media.cat-aqi { background: var(--chapter-aqi); }
+	.media.cat-hot {
+		background: var(--chapter-heat);
+	}
+	.media.cat-cold {
+		background: var(--chapter-cold);
+	}
+	.media.cat-rain,
+	.media.cat-typhoon {
+		background: var(--chapter-rain);
+	}
+	.media.cat-aqi {
+		background: var(--chapter-aqi);
+	}
 
 	.body {
 		flex: 1;
@@ -176,8 +195,12 @@
 		font-weight: 400;
 		color: var(--color-ink-muted);
 	}
-	.temp.hot { color: var(--color-hot); }
-	.temp.cold { color: var(--color-cold); }
+	.temp.hot {
+		color: var(--color-hot);
+	}
+	.temp.cold {
+		color: var(--color-cold);
+	}
 	.feels {
 		font-weight: 400;
 		color: var(--color-ink-muted);
@@ -205,7 +228,9 @@
 		color: var(--color-ink);
 		text-decoration: none;
 	}
-	.read-more:hover { text-decoration: underline; }
+	.read-more:hover {
+		text-decoration: underline;
+	}
 	.outlet {
 		font-weight: 400;
 		color: var(--color-ink-muted);

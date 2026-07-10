@@ -54,7 +54,6 @@
 			loadError = e instanceof Error ? e.message : String(e);
 		}
 	});
-
 </script>
 
 <section class="intro">

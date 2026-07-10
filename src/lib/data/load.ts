@@ -29,6 +29,11 @@ export interface OutliersTable extends CompactTable {
 	series_enum: string[];
 }
 
+export interface YearlyTable extends CompactTable {
+	/** anomaly reference period, e.g. [1980, 2009] */
+	baseline: [number, number];
+}
+
 export interface TempEvent {
 	id: string;
 	type: string;
@@ -91,6 +96,7 @@ export const loadDaily = () => loadJson<CompactTable>('daily.json');
 export const loadOutliers = () => loadJson<OutliersTable>('outliers.json');
 export const loadTempEvents = () => loadJson<TempEvent[]>('temp-events.json');
 export const loadCuratedEvents = () => loadJson<CuratedEvent[]>('events-curated.json');
+export const loadYearly = () => loadJson<YearlyTable>('yearly.json');
 
 /** Resolve an event image path (relative in JSON) against the base path. */
 export const eventImageUrl = (image: string | null) =>

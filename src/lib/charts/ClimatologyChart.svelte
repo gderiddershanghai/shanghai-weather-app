@@ -37,9 +37,7 @@
 	const hiP99 = $derived(feels ? clim.atmax_p99 : clim.tmax_p99);
 	const loP05 = $derived(feels ? clim.atmin_p05 : clim.tmin_p05);
 
-	const bandData = $derived(
-		clim.doy.map((doy, i) => ({ x: doy, y0: loP05[i], y1: hiP95[i] }))
-	);
+	const bandData = $derived(clim.doy.map((doy, i) => ({ x: doy, y0: loP05[i], y1: hiP95[i] })));
 	const medianData = $derived(clim.doy.map((doy, i) => ({ x: doy, y: hi[i] })));
 	const p99Data = $derived(clim.doy.map((doy, i) => ({ x: doy, y: hiP99[i] })));
 
@@ -171,9 +169,7 @@
 		focusedPos = null;
 	}
 
-	const hoveredIso = $derived(
-		hovered ? dateIntToIso(Number(hovered.dot.id.split('-')[1])) : null
-	);
+	const hoveredIso = $derived(hovered ? dateIntToIso(Number(hovered.dot.id.split('-')[1])) : null);
 </script>
 
 <figure class="climatology" bind:clientWidth={frameWidth}>
@@ -192,7 +188,11 @@
 			{/if}
 
 			<!-- on-chart key: readers must not need the prose to decode the marks -->
-			<g class="chart-key" aria-hidden="true" transform="translate({x.range()[0] + 6}, {y.range()[1] + 4})">
+			<g
+				class="chart-key"
+				aria-hidden="true"
+				transform="translate({x.range()[0] + 6}, {y.range()[1] + 4})"
+			>
 				{#if $chartState.showBand}
 					<rect x="0" y="0" width="14" height="9" rx="2" class="key-band" />
 					<text x="19" y="8">{i18n.t('chart.key.band')}</text>
@@ -208,20 +208,21 @@
 				{/if}
 			</g>
 			{#if $chartState.showP99}
-				<LinePath {x} {y} data={p99Data} stroke="var(--color-hot)" strokeWidth={1} dashed opacity={0.7} />
+				<LinePath
+					{x}
+					{y}
+					data={p99Data}
+					stroke="var(--color-hot)"
+					strokeWidth={1}
+					dashed
+					opacity={0.7}
+				/>
 			{/if}
 			{#if $chartState.showMedian}
 				<LinePath {x} {y} data={medianData} />
 			{/if}
 
-			<Dots
-				{x}
-				{y}
-				{dots}
-				onfocus={handleFocus}
-				onblur={handleBlur}
-				onselect={handleSelect}
-			/>
+			<Dots {x} {y} {dots} onfocus={handleFocus} onblur={handleBlur} onselect={handleSelect} />
 		{/snippet}
 	</Chart>
 

@@ -10,13 +10,23 @@
 		type DotTail,
 		type DotThreshold,
 		type Season,
-		type TempMode
+		type TempMode,
+		type TrendMetric
 	} from '$lib/stores/chartState';
 	import { getI18n } from '$lib/i18n';
 
 	const i18n = getI18n();
 
-	const CHART_TYPES: ChartType[] = ['climatology', 'timeseries', 'heatmap', 'scatter'];
+	const CHART_TYPES: ChartType[] = ['climatology', 'yearly', 'timeseries', 'heatmap', 'scatter'];
+	const TREND_METRICS: TrendMetric[] = [
+		'stripes',
+		'summer',
+		'winter',
+		'hotDays',
+		'prcp',
+		'gust',
+		'pm25'
+	];
 	const TEMP_MODES: TempMode[] = ['real', 'feels_like'];
 	const THRESHOLDS: DotThreshold[] = ['p99', 'p95', 'none'];
 	const TAILS: DotTail[] = ['hot', 'cold', 'both'];
@@ -51,7 +61,10 @@
 		<fieldset>
 			<legend>{i18n.t('explore.tempMode')}</legend>
 			{#each TEMP_MODES as mode (mode)}
-				<button class:on={$chartState.tempMode === mode} onclick={() => applyPreset({ tempMode: mode })}>
+				<button
+					class:on={$chartState.tempMode === mode}
+					onclick={() => applyPreset({ tempMode: mode })}
+				>
 					{i18n.t(`explore.tempMode.${mode}`)}
 				</button>
 			{/each}
@@ -59,7 +72,10 @@
 		<fieldset>
 			<legend>{i18n.t('explore.dots')}</legend>
 			{#each THRESHOLDS as t (t)}
-				<button class:on={$chartState.dotThreshold === t} onclick={() => applyPreset({ dotThreshold: t })}>
+				<button
+					class:on={$chartState.dotThreshold === t}
+					onclick={() => applyPreset({ dotThreshold: t })}
+				>
 					{i18n.t(`explore.dots.${t}`)}
 				</button>
 			{/each}
@@ -67,8 +83,25 @@
 		<fieldset>
 			<legend>{i18n.t('explore.tail')}</legend>
 			{#each TAILS as tail (tail)}
-				<button class:on={$chartState.dotTail === tail} onclick={() => applyPreset({ dotTail: tail })}>
+				<button
+					class:on={$chartState.dotTail === tail}
+					onclick={() => applyPreset({ dotTail: tail })}
+				>
 					{i18n.t(`explore.tail.${tail}`)}
+				</button>
+			{/each}
+		</fieldset>
+	{/if}
+
+	{#if $chartState.chartType === 'yearly'}
+		<fieldset>
+			<legend>{i18n.t('explore.metric')}</legend>
+			{#each TREND_METRICS as m (m)}
+				<button
+					class:on={$chartState.trendMetric === m}
+					onclick={() => applyPreset({ trendMetric: m })}
+				>
+					{i18n.t(`trend.${m}`)}
 				</button>
 			{/each}
 		</fieldset>
@@ -89,7 +122,10 @@
 		<fieldset>
 			<legend>{i18n.t('explore.smoothing')}</legend>
 			{#each WINDOWS as w (w)}
-				<button class:on={$chartState.rollingWindow === w} onclick={() => applyPreset({ rollingWindow: w })}>
+				<button
+					class:on={$chartState.rollingWindow === w}
+					onclick={() => applyPreset({ rollingWindow: w })}
+				>
 					{i18n.t(`explore.smoothing.${w}`)}
 				</button>
 			{/each}
@@ -99,7 +135,10 @@
 	{#if $chartState.chartType === 'scatter'}
 		<fieldset>
 			<legend>{i18n.t('explore.tail')}</legend>
-			<button class:on={$chartState.seasonFilter == null} onclick={() => applyPreset({ seasonFilter: null })}>
+			<button
+				class:on={$chartState.seasonFilter == null}
+				onclick={() => applyPreset({ seasonFilter: null })}
+			>
 				{i18n.t('seasons.all')}
 			</button>
 			{#each SEASON_KEYS as key, s (key)}

@@ -8,17 +8,20 @@
 	import TimeSeriesChart from '$lib/charts/TimeSeriesChart.svelte';
 	import MonthlyHeatmap from '$lib/charts/MonthlyHeatmap.svelte';
 	import ScatterChart from '$lib/charts/ScatterChart.svelte';
+	import YearlyTrendChart from '$lib/charts/YearlyTrendChart.svelte';
 	import {
 		loadClimatology,
 		loadCuratedEvents,
 		loadDaily,
 		loadMeta,
 		loadOutliers,
+		loadYearly,
 		type Climatology,
 		type CompactTable,
 		type CuratedEvent,
 		type Meta,
-		type OutliersTable
+		type OutliersTable,
+		type YearlyTable
 	} from '$lib/data/load';
 	import { assertDailyColumns } from '$lib/data/daily';
 	import { base } from '$app/paths';
@@ -32,6 +35,7 @@
 	let daily = $state<CompactTable | null>(null);
 	let monthly = $state<CompactTable | null>(null);
 	let tempAqi = $state<(CompactTable & { binned: never[] }) | null>(null);
+	let yearly = $state<YearlyTable | null>(null);
 	let meta = $state<Meta | null>(null);
 	let loadError = $state<string | null>(null);
 
@@ -47,12 +51,14 @@
 			]);
 			assertDailyColumns(daily!);
 			// heavier extras load after first paint
-			const [m, ta] = await Promise.all([
+			const [m, ta, yr] = await Promise.all([
 				fetch(`${base}/data/derived/monthly.json`).then((r) => r.json()),
-				fetch(`${base}/data/derived/temp-aqi.json`).then((r) => r.json())
+				fetch(`${base}/data/derived/temp-aqi.json`).then((r) => r.json()),
+				loadYearly()
 			]);
 			monthly = m;
 			tempAqi = ta;
+			yearly = yr;
 		} catch (e) {
 			loadError = e instanceof Error ? e.message : String(e);
 		}
@@ -76,6 +82,8 @@
 				<MonthlyHeatmap {monthly} />
 			{:else if $chartState.chartType === 'scatter' && tempAqi}
 				<ScatterChart {tempAqi} />
+			{:else if $chartState.chartType === 'yearly' && yearly}
+				<YearlyTrendChart {yearly} />
 			{:else}
 				<p class="loading">…</p>
 			{/if}

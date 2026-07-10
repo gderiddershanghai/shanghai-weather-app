@@ -22,8 +22,16 @@
 	<meta name="description" content={i18n.t('site.tagline')} />
 	<meta property="og:title" content={i18n.t('site.title')} />
 	<meta property="og:locale" content={data.lang === 'zh' ? 'zh_CN' : 'en_US'} />
-	<link rel="alternate" hreflang="en" href={page.url.pathname.replace(/\/(en|zh)(\/|$)/, '/en$2')} />
-	<link rel="alternate" hreflang="zh" href={page.url.pathname.replace(/\/(en|zh)(\/|$)/, '/zh$2')} />
+	<link
+		rel="alternate"
+		hreflang="en"
+		href={page.url.pathname.replace(/\/(en|zh)(\/|$)/, '/en$2')}
+	/>
+	<link
+		rel="alternate"
+		hreflang="zh"
+		href={page.url.pathname.replace(/\/(en|zh)(\/|$)/, '/zh$2')}
+	/>
 </svelte:head>
 
 <header class="site-header">

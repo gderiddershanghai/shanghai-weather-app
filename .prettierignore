@@ -8,3 +8,5 @@ archive/
 data/
 pipeline/
 package-lock.json
+.claude/
+review/

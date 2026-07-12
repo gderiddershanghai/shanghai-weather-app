@@ -12,6 +12,37 @@ from .config import AQI_CSV
 
 POLLUTANTS = ["pm25", "pm10", "o3", "no2", "so2", "co"]
 
+# US-EPA breakpoints (µg/m³ ↔ AQI) — used only to sanity-check the feed.
+_PM25_BP = [(0, 12, 0, 50), (12.1, 35.4, 51, 100), (35.5, 55.4, 101, 150),
+            (55.5, 150.4, 151, 200), (150.5, 250.4, 201, 300),
+            (250.5, 350.4, 301, 400), (350.5, 500.4, 401, 500)]
+_PM10_BP = [(0, 54, 0, 50), (55, 154, 51, 100), (155, 254, 101, 150),
+            (255, 354, 151, 200), (355, 424, 201, 300),
+            (425, 504, 301, 400), (505, 604, 401, 500)]
+
+
+def _inv_aqi(aqi: float, bp: list[tuple]) -> float | None:
+    for clo, chi, ilo, ihi in bp:
+        if ilo <= aqi <= ihi:
+            return clo + (aqi - ilo) * (chi - clo) / (ihi - ilo)
+    return None
+
+
+def _null_impossible_pm25(df: pd.DataFrame) -> pd.DataFrame:
+    """PM2.5 is a subset of PM10, so its implied concentration can never exceed
+    PM10's — yet ~6% of aqicn Shanghai rows do (up to AQI 409 on days official
+    CNEMC stations measured 良). A faulty station feed in the aggregate. Null
+    the pm25 value when it exceeds 1.5× the same-day PM10 concentration; the
+    tolerance forgives aggregation wobble but kills the impossible rows."""
+    c25 = df["pm25"].map(lambda a: _inv_aqi(a, _PM25_BP) if pd.notna(a) else None)
+    c10 = df["pm10"].map(lambda a: _inv_aqi(a, _PM10_BP) if pd.notna(a) else None)
+    bad = c25.notna() & c10.notna() & (c25 > c10 * 1.5)
+    if bad.any():
+        print(f"  aqi: nulled {int(bad.sum())} impossible pm25 rows (pm2.5 conc > 1.5x pm10)")
+    df.loc[bad, "pm25"] = pd.NA
+    df["pm25"] = pd.to_numeric(df["pm25"], errors="coerce")
+    return df
+
 
 def load_aqi() -> pd.DataFrame:
     df = pd.read_csv(AQI_CSV)
@@ -20,6 +51,7 @@ def load_aqi() -> pd.DataFrame:
     for col in POLLUTANTS:
         df[col] = pd.to_numeric(df[col], errors="coerce")
     df = df.sort_values("date").drop_duplicates("date", keep="last").reset_index(drop=True)
+    df = _null_impossible_pm25(df)
     df["year"] = df["date"].dt.year
     df["month"] = df["date"].dt.month
     return df

@@ -133,13 +133,13 @@
 
 	"steps.aqi-1.title": { "en": "The air, remembered", "zh": "记忆中的空气" },
 	"steps.aqi-1.body": {
-		"en": "In the mid-2010s, opening a window here meant checking an app first. The heatmap doesn't forget either: dark winters in 2014 and 2015, when the typical day's PM2.5 index sat at 116 on the US scale — 'unhealthy for sensitive groups', a level China's own standard files under a milder category. Same air, different color depending on whose app you checked. (All values here use the US index.)",
-		"zh": "2010年代中期，在这里开窗前得先查一下App。这张热力图也没有忘记：2014、2015年那些深色的冬天，PM2.5指数按美标通常在116——“对敏感人群不健康”，而按中国标准，同样的空气会被归入更温和的等级。同样的空气，不同的App显示不同的颜色。（本图数值均采用美标指数。）"
+		"en": "In the mid-2010s, opening a window here meant checking an app first. The heatmap doesn't forget either: dark winters in 2014 and 2015, when the typical winter day's PM2.5 index sat near 130 on the US scale — 'unhealthy for sensitive groups', a level China's own standard files under a milder category. Same air, different color depending on whose app you checked. (All values here use the US index.)",
+		"zh": "2010年代中期，在这里开窗前得先查一下App。这张热力图也没有忘记：2014、2015年那些深色的冬天，冬季PM2.5指数按美标通常在130左右——“对敏感人群不健康”，而按中国标准，同样的空气会被归入更温和的等级。同样的空气，不同的App显示不同的颜色。（本图数值均采用美标指数。）"
 	},
 	"steps.aqi-scale.title": { "en": "Same air, different color", "zh": "同样的空气，不同的颜色" },
 	"steps.aqi-scale.body": {
-		"en": "An air quality index doesn't measure the air. It translates a measurement into a color — and each country slices the same PM2.5 concentrations into its own colored categories. Take a typical bad 2014 winter day, about 42 µg/m³: the US index calls it orange — 'unhealthy for sensitive groups'. China's standard calls the very same air 良 — 'good'. Neither is lying; they just draw the lines in different places.",
-		"zh": "空气质量指数并不测量空气，而是把测量结果翻译成颜色——各国把相同的PM2.5浓度切分成各自的彩色等级。以2014年一个典型的污染冬日为例，约42微克/立方米：美标指数把它标为橙色——“对敏感人群不健康”；而中国标准把同样的空气评为“良”。谁都没有说谎——只是划线的位置不同。"
+		"en": "An air quality index doesn't measure the air. It translates a measurement into a color — and each country slices the same PM2.5 concentrations into its own colored categories. Take a typical bad 2014 winter day, about 47 µg/m³: the US index calls it orange — 'unhealthy for sensitive groups'. China's standard calls the very same air 良 — 'good'. Neither is lying; they just draw the lines in different places.",
+		"zh": "空气质量指数并不测量空气，而是把测量结果翻译成颜色——各国把相同的PM2.5浓度切分成各自的彩色等级。以2014年一个典型的污染冬日为例，约47微克/立方米：美标指数把它标为橙色——“对敏感人群不健康”；而中国标准把同样的空气评为“良”。谁都没有说谎——只是划线的位置不同。"
 	},
 	"aqiScale.us": { "en": "US EPA", "zh": "美标 (US EPA)" },
 	"aqiScale.cn": { "en": "China GB 3095", "zh": "国标 (GB 3095)" },
@@ -148,13 +148,13 @@
 		"zh": "PM2.5浓度（微克/立方米，24小时均值）"
 	},
 	"aqiScale.marker": {
-		"en": "typical bad 2014 winter day ≈ 42 µg/m³",
-		"zh": "2014年典型污染冬日 ≈ 42微克/立方米"
+		"en": "typical bad 2014 winter day ≈ 47 µg/m³",
+		"zh": "2014年典型污染冬日 ≈ 47微克/立方米"
 	},
 	"steps.aqi-2.title": { "en": "…is actually getting cleaner", "zh": "……其实正在变干净" },
 	"steps.aqi-2.body": {
-		"en": "Watch the colors fade left to right. The typical day's PM2.5 index fell from 116 in 2014 to 77 in 2025; days over 100 dropped from 227 a year to 87. Still far from pristine — but this is one claim the data settles clearly: Shanghai's air is better than it was a decade ago.",
-		"zh": "看着颜色从左到右变浅。PM2.5指数中位数从2014年的116降到2025年的77；超过100的天数从每年227天降到87天。离真正干净还很远——但这一点数据说得很清楚：上海的空气比十年前好了。"
+		"en": "Watch the colors fade left to right. The typical day's PM2.5 index fell from 112 in 2014 to 74 in 2025; days over 100 dropped from 210 a year to 75. Still far from pristine — but this is one claim the data settles clearly: Shanghai's air is better than it was a decade ago.",
+		"zh": "看着颜色从左到右变浅。PM2.5指数中位数从2014年的112降到2025年的74；超过100的天数从每年210天降到75天。离真正干净还很远——但这一点数据说得很清楚：上海的空气比十年前好了。"
 	},
 
 	"steps.interplay-1.title": { "en": "Heat and haze, together", "zh": "高温与雾霾的纠缠" },

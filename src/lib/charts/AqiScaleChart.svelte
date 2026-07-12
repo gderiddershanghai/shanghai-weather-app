@@ -33,7 +33,7 @@
 		zh: ['优', '良', '轻度污染', '中度污染', '重度污染', '严重污染']
 	};
 
-	const MARKER = 42; // µg/m³ — ≈ the 2014 median winter day (US AQI ~116)
+	const MARKER = 47; // µg/m³ — ≈ the 2014 median winter day (US AQI ~130, cleaned feed)
 	const MAX = 260;
 
 	let width = $state(0);
